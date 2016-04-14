@@ -23,7 +23,7 @@ class estadoAlarma:
 
 class alarmaMonitor (threading.Thread):
 
-	def __init__(self):
+	def __init__(self,folder):
 		threading.Thread.__init__(self)
 		self.ea = estadoAlarma.Activa
 		self.matar = False
@@ -32,6 +32,7 @@ class alarmaMonitor (threading.Thread):
 		self.comm = comunicacionArduino()
 		self.comm.setAlarma(self)
 		self.comm.start()
+		self.folder = folder
 
 	def setMovimiento(self,mov,frame):
 		self.movimiento = True
@@ -41,8 +42,8 @@ class alarmaMonitor (threading.Thread):
 		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 		cv2.putText(frame, datetime.datetime.now().strftime("%A %d %B %Y %I:%M:%S%p"),
 		(10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-		print "/home/pi/shared/frames/{0}-{1}.jpg".format(self.alarma,datetime.datetime.now().strftime("%Y-%b-%d-%I-%M-%S%p"))
-		cv2.imwrite("/home/pi/shared/frames/{0}-{1}.jpg".format(self.alarma,datetime.datetime.now().strftime("%Y-%b-%d-%I-%M-%S%p")),frame)
+		print "{2}{0}-{1}.jpg".format(self.alarma,datetime.datetime.now().strftime("%Y-%b-%d-%I-%M-%S%p"),self.folder)
+		cv2.imwrite("{2}{0}-{1}.jpg".format(self.alarma,datetime.datetime.now().strftime("%Y-%b-%d-%I-%M-%S%p"),self.folder),frame)
 
 			# aprovecho a almacenar en el historico las alarmas correspondientes en el caso que vengan de sensores
 
