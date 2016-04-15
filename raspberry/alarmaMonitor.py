@@ -90,7 +90,8 @@ class alarmaMonitor (threading.Thread):
 				
 			if self.movimiento is True and self.ea is estadoAlarma.Activa:
 				logger.debug("Se detecto movimiento en : {} ; Estableciendo alarma !!!".format(self.alarma))
-				self.comm.notificarMovimiento()
+				#self.comm.notificarMovimiento()
+				self.notificaArduino([ord('R'),ord('3'),ord('T')])
 				self.ea = estadoAlarma.Sonando
 			
 			

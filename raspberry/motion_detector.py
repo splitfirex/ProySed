@@ -31,13 +31,6 @@ def main_loop():
 	raw_input("Press Enter to continue...")
 	for hilos in threads:
 		hilos.matar = True
-	#while len(threads) > 0:
-	#	try:
-	#		threads = [t for t in threads if t is not None and t.isAlive()]
-	#	except KeyboardInterrupt:
-	#		print "Ctrl-c received! Sending kill to threads..."
-	#		for hilos in threads:
-	#			hilos.matar = True
 
 if __name__ == '__main__':
     main_loop()
