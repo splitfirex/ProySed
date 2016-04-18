@@ -1,0 +1,5 @@
+<users estado="activo">
+    <user age="38" id="1" name="Rocky" />
+    <user age="50" id="2" name="Steve" />
+    <spam>This is a test</spam><spam estado="activo">This is a test</spam><spam>This is a test</spam><user age="38" id="3" name="Melinda" />
+</users>
