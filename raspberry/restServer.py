@@ -14,27 +14,31 @@ app = web.application(urls, globals())
 
 class list_alarma:
 	def GET(self):
+		web.header("Access-Control-Allow-Origin", "*");
 		tree = ET.parse('alarm_data.xml')
 		root = tree.getroot()
-		output = 'data: ['
+		output = '['
 		for nodo in root:
 			output += str(nodo.attrib) + ','
+		output = output[:-1]
 		output += ']';
-		return output
+		return output.replace("'",'\"')
 
 class get_state:
 	def GET(self):
+		web.header("Access-Control-Allow-Origin", "*");
 		tree = ET.parse('alarm_data.xml')
 		root = tree.getroot()
 		state = root.get('estado')
 		state_since = root.get('estado-desde')
-		output = 'data: {'
-		output += 'estado: "{0}" , since: "{1}"'.format(state, state_since)
+		output = '{ '
+		output += '"estado" : "{0}" , "since" : "{1}"'.format(state, state_since)
 		output += '}'
 		return output
 
 class insert_alarma:        
     def GET(self):
+    	web.header("Access-Control-Allow-Origin", "*");
     	tree = ET.parse('alarm_data.xml')
     	root = tree.getroot()    	
     	raw_data = web.input()
@@ -51,6 +55,7 @@ class insert_alarma:
 
 class update_state:
     def GET(self, state):
+    	web.header("Access-Control-Allow-Origin", "*");
     	tree = ET.parse('alarm_data.xml')
     	root = tree.getroot()
     	root.set('estado',state)
