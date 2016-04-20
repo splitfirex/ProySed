@@ -85,34 +85,23 @@
             style="min-height:auto;">
             <div class="mdl-card__actions mdl-card--border">
               <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50" data-upgraded=",MaterialButton,MaterialRipple">
-                Estado actual : <span id="estado_alarma"></span> <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
+                Estado actual : <span id="estado_alarma_text"></span> <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
             </div>
           </div>
 
         </div>
-
-
         <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
 
-          <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+          <div id="template_clonar" class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop"
+            style="display:none">
             <div class="mdl-card__title mdl-color--red-300" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/6/63/Outsiders_inn-320x240.jpg'); background-size: cover; min-height:240px">
-              <h2 class="mdl-card__title-text">Camara1</h2>
+              <h2 class="mdl-card__title-text sensor_nombre"></h2>
             </div>
-            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-              Movimiento el 23/12/2016 a las 23:23
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600 sensor_info">
             </div>
           </div>
 
           <div class="demo-separator mdl-cell--1-col"></div>
-
-          <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-            <div class="mdl-card__title mdl-card--expand mdl-color--red-300">
-              <h2 class="mdl-card__title-text">Estado : Activa</h2>
-            </div>
-            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-              Non dolore elit adipisicing ea reprehenderit consectetur culpa.
-            </div>
-          </div>
 
         </div>
 
@@ -132,11 +121,21 @@
   <script>
     $(function(){
     $.getJSON("http://localhost:8080/consultar/estado", function( data ) {
-      alert(data);
+      $("#estado_alarma_text").text(data["estado"]);
     });
     
      $.getJSON("http://localhost:8080/consultar/historico", function( data ) {
-      alert(data);
+      $.each(data,function(key,value){
+        var elemento = $("#template_clonar").clone();
+        elemento.removeAttr('id');
+        elemento.show();
+        elemento.find(".sensor_nombre").first().text(value.nombre)
+        elemento.find(".sensor_info").first().text("Movimiento el "+ value.fecha)
+        $("#template_clonar").after(elemento);
+        elemento.after('<div class="demo-separator mdl-cell--1-col"></div>');
+      });
+      
+      //alert(data);
     });
    
   });
