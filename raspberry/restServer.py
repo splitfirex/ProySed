@@ -7,7 +7,8 @@ urls = (
     '/consultar/historico', 'list_alarma',
     '/consultar/estado', 'get_state',
     '/insertar/movimiento', 'insert_alarma',
-    '/cambiar/estado/(.*)', 'update_state'
+    '/cambiar/estado/(.*)', 'update_state',
+	'/cambiar/password/(.*)', 'update_pass'
 )
 
 app = web.application(urls, globals())
@@ -60,6 +61,15 @@ class update_state:
     	root = tree.getroot()
     	root.set('estado',state)
     	root.set('estado-desde', datetime.datetime.now().strftime("%Y/%B/%d %I:%M:%S.%p"))
+    	tree.write('alarm_data.xml', xml_declaration=False)
+    	return 'OK'
+		
+class update_pass:
+    def GET(self, password):
+    	web.header("Access-Control-Allow-Origin", "*");
+    	tree = ET.parse('alarm_data.xml')
+    	root = tree.getroot()
+    	root.set('password',password)
     	tree.write('alarm_data.xml', xml_declaration=False)
     	return 'OK'
     

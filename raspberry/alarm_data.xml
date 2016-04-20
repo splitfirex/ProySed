@@ -1,4 +1,4 @@
-<alarma estado="inactivo" estado-desde="2016/April/18 11:17:20.PM">
+<alarma estado="Preactiva" estado-desde="2016/April/20 10:27:58.PM" password="1234">
 	<movimiento fecha="11/22/1963 10:10:10" imagen="frames/framesdsd.jpg" nombre="Movil" tipo="camara" /> 
 	<movimiento fecha="11/22/1963 10:10:12" imagen="frames/framesdsd.jpg" nombre="Movil" tipo="sensor" /> 
 </alarma>
