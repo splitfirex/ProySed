@@ -6,6 +6,7 @@ from xml.etree.ElementTree import Element
 urls = (
     '/consultar/historico', 'list_alarma',
     '/consultar/estado', 'get_state',
+	'/consultar/password', 'get_password',
     '/insertar/movimiento', 'insert_alarma',
     '/cambiar/estado/(.*)', 'update_state',
 	'/cambiar/password/(.*)', 'update_pass'
@@ -34,6 +35,17 @@ class get_state:
 		state_since = root.get('estado-desde')
 		output = '{ '
 		output += '"estado" : "{0}" , "since" : "{1}"'.format(state, state_since)
+		output += '}'
+		return output
+
+class get_password:
+    	def GET(self):
+		web.header("Access-Control-Allow-Origin", "*");
+		tree = ET.parse('alarm_data.xml')
+		root = tree.getroot()
+		password = root.get('password')
+		output = '{ '
+		output += '"password" : "{0}" '.format(password)
 		output += '}'
 		return output
 

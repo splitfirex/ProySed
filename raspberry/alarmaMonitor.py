@@ -8,6 +8,7 @@ import smbus
 import ConfigParser
 import threading
 import sys
+import requests
 from comunicacion import comunicacionArduino
 
 format= '%(asctime)s - %(levelname)s - %(filename)s:%(lineno)s - %(funcName)s() - %(message)s'
@@ -71,6 +72,11 @@ class alarmaMonitor (threading.Thread):
 			self.bus.write_i2c_block_data(self.address,0,notificacion)
 		except:
 			pass
+			
+	def consultaMensajeWeb(self,tipo):
+    	contenido = requests.get('https://localhost:8082/'+tipo)
+		contenido.json()
+	
 
 	def run(self):
 		while True:
