@@ -14,11 +14,13 @@ def main_loop():
 	config.read('camarasConfig.properties')
 	rutas = config.get('Camara', 'camara.rutas').split()
 	nombres = config.get('Camara', 'camara.nombres').split()
-	framesFolder = config.get('Camara', 'camara.framesfolder')
+	params = {"framesFolder" : config.get('Camara', 'camara.framesfolder'),"weburl" : config.get('Camara', 'camara.weburl') }
+	#framesFolder = config.get('Camara', 'camara.framesfolder')
+	#urlweb = config.get('Camara', 'camara.weburl')
 
 	threads = list()
 	
-	Alarma = alarmaMonitor(framesFolder)
+	Alarma = alarmaMonitor(params)
 	threads.append(Alarma)
 	Alarma.start()
 

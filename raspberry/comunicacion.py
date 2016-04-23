@@ -1,57 +1,51 @@
-import smbus
+#import smbus
 import time
-import threading
+import requests
 
-class comunicacionArduino (threading.Thread):
+class comunicacion:
+	url = "http://localhost:8081/"
+	bus = '1'
+	address = 1234
+	params = {"verbose": False}
 
-	def __init__(self):
-		threading.Thread.__init__(self)
-		self.bus     = smbus.SMBus(1)
-		self.address = 0x04
-		self.matar = False
-		self.data =""
-		self.caracter =""
+	@classmethod
+	def consultaI2C(cls):
+		data = [0,'D',0,0]
+		try:
+			caracter = ''
+			while caracter is not ord('T'):
+				caracter = cls.bus.read_byte(cls.address)
+				time.sleep(1)
+				if caracter is 0:
+					continue
+				data    +=str(chr(caracter))
+				print "el caracter es ", chr(caracter)
+			print "la data es ", data
+		except:
+			pass
+		return data
 		
-
-	def setAlarma(self,al):
-		self.alarma  = al
-
-	def notificarActivacion(self):
-		print "Notificando activar alarma"
+	@classmethod
+	def notificaI2C(cls,notificacion):
+		print "notificamos a la arduino :", notificacion
+		try:
+			cls.bus.write_i2c_block_data(cls.address,0,notificacion)
+		except:
+			pass
+			
+	@classmethod
+	def consultaHTTP(cls,tipo):
+		try:
+			contenido = requests.get(cls.url+ '' +tipo)
+		except Exception,e:
+			print str(e)
+			return {}
+		return contenido.json()
 	
-	def notificarPreactivacion(self):
-		print "Notificando preactivacion Alarma"
-
-	def notificarDesactivacion(self):
-		print "Notificando deacticar Alarma"
-
-	def notificarMovimiento(self):
-		print "Notificando movimiento"
-		#self.bus.write_i2c_block_data(self.address, ord('R'), [ord('3'), ord('T'), 0])
-		
-		value="R3T"
-		for c in value:
-			self.bus.write_byte(self.address, ord(c))
-
-	def readNumber(self):
-		caracter = ''
-		while caracter is not ord('T'):
-			caracter = self.bus.read_byte(self.address)
-			time.sleep(1)
-			if caracter is 0:
-				continue
-			self.data    +=str(chr(caracter))
-			print "el caracter  es ", chr(caracter)
-		print "la data es ", self.data
-		return self.data
-
-	def run(self):
-		while True:
-
-			valores = self.readNumber()
-			if valores[0] is 'A' and valores[1] is '1':
-				self.notificarMovimiento()
-
-			if self.matar is True:
-				break
-			time.sleep(10)
+	@classmethod
+	def notificaHTTP(cls,tipo):
+		try:
+			contenido = requests.get(cls.url+ '' +tipo)
+			return contenido.json()
+		except:
+			return {}

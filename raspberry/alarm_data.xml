@@ -1,4 +1,4 @@
-<alarma estado="Sonando" estado-desde="2016/April/14 10:06:53.PM" password="3333">
+<alarma estado="Activa" estado-desde="2016/April/23 06:54:21.PM" password="3333">
 	<movimiento fecha="11/22/1963 10:10:10" imagen="frames/framesdsd.jpg" nombre="Movil" tipo="camara" /> 
 	<movimiento fecha="11/22/1963 10:10:12" imagen="frames/framesdsd.jpg" nombre="Movil" tipo="sensor" /> 
 </alarma>
