@@ -231,7 +231,7 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/material.min.js"></script>
   <script>
-    var url = "http://localhost:8081";
+    var url = "http://localhost:8888";
     $(function(){
        
       $(".navbott").on("click",function(){
@@ -242,18 +242,18 @@
       });
       
      $(".passwordchange").on("click",function(){
-        $.get(url+"/cambiar/password/"+$("#pass").val());
+        $.get(url+"/api?action=cambiarpassword&password="+$("#pass").val());
         $("#pass").val("");
      });
      
      $(".cambiarestado").on("click",function(){
        var data = $(this).data("state");
-       $.get(url +"/cambiar/estado/"+data);
+       $.get(url +"/api?action=cambiarestado&estado="+data);
      });
       //alert(data);
     });
     
-   window.setInterval(actualizarEstado, 1000);
+/*   window.setInterval(actualizarEstado, 1000);
   
     function actualizarEstado(){
      
@@ -294,7 +294,81 @@
       });
     }); 
    }
+   */
   </script>
+  
+    <script>
+      
+    var contador = 0;
+    var ws = new WebSocket('ws://localhost:8888/ws');
+    var $message = $('#message');
+
+    ws.onopen = function(ev){
+      $message.attr("class", 'label label-success');
+      $message.text('open');
+    };
+    ws.onmessage = function(ev){
+      var json = JSON.parse(ev.data);
+       
+      if(json.action == "movimiento"){
+        
+        $.each(json.movimientos,function(index, value){
+          
+            var elemento = $("#template_clonar").clone();
+            elemento.removeAttr('id');
+            elemento.show();
+            elemento.find(".sensor_nombre").first().text(value.nombre);
+            elemento.find(".sensor_info").first().text("Movimiento el "+ value.fecha)
+            //elemento.find(".article-image").first().attr("src", value.imagen);
+            if(contador % 2 == 0){
+              $("#contenido_movimientos").prepend(elemento);
+            }else{
+              $("#contenido_movimientos2").prepend(elemento);
+            }
+            elemento.after('<div class="demo-separator mdl-cell--1-col"></div>');
+            contador++;
+        })
+       
+      }
+      
+      if(json.action == "estado"){
+          $(".estado_alarma_text").text(json.estado);
+          $(".titleColor").removeClass('mdl-color--grey-500');
+          $(".titleColor").removeClass('mdl-color--blue-100');
+          $(".titleColor").removeClass('mdl-color--green-500');
+          $(".titleColor").removeClass('mdl-color--red-500');
+          
+          if(json.estado == "Activa"){
+            $(".titleColor").addClass('mdl-color--green-500');
+          }else if(json.estado == "Inactiva"){
+            $(".titleColor").addClass('mdl-color--grey-500');
+          }else if(json.estado == "Preactiva"){
+            $(".titleColor").addClass('mdl-color--blue-100');
+          }else if(json.estado == "Sonando"){
+            $(".titleColor").addClass('mdl-color--red-500');
+          }
+      }
+
+    };
+    ws.onclose = function(ev){
+      $(".estado_alarma_text").text("Sin Conexión");
+      $(".titleColor").removeClass('mdl-color--grey-500');
+      $(".titleColor").removeClass('mdl-color--blue-100');
+      $(".titleColor").removeClass('mdl-color--green-500');
+      $(".titleColor").removeClass('mdl-color--red-500');
+      $(".titleColor").addClass('mdl-color--grey-500');
+    };
+    ws.onerror = function(ev){
+      $(".estado_alarma_text").text("Sin Conexión");
+      $(".titleColor").removeClass('mdl-color--grey-500');
+      $(".titleColor").removeClass('mdl-color--blue-100');
+      $(".titleColor").removeClass('mdl-color--green-500');
+      $(".titleColor").removeClass('mdl-color--red-500');
+      $(".titleColor").addClass('mdl-color--grey-500');
+    };
+
+  </script>
+  
 </body>
 
 </html>

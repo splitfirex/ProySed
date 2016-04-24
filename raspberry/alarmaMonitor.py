@@ -48,17 +48,21 @@ class alarmaMonitor (threading.Thread):
 			print "{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)
 			cv2.imwrite("{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder),frame)
 			comunicacion.notificaI2C([ord('R'),ord('3'),ord('T')])
-			comunicacion.notificaHTTP("insertar/movimiento?tipo=camara&nombre={0}&fecha={1}&imagen={2}".format(mov,fechaImagen,"{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)))
+			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=camara&nombre={0}&fecha={1}&imagen={2}".format(mov,fechaImagen,"{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)))
+			self.ea = estadoAlarma.Sonando
+			comunicacion.notificaHTTP("/api?action=cambiarestado&estado=Sonando")
 			# aprovecho a almacenar en el historico las alarmas correspondientes en el caso que vengan de sensores
 		if self.ea is estadoAlarma.Activa and frame is None:
 			self.movimiento = True
 			self.alarma = mov
 			comunicacion.notificaI2C([ord('R'),ord('3'),ord('T')])
-			comunicacion.notificaHTTP("insertar/movimiento?tipo=sensor&nombre={0}&fecha={1}".format(mov,fechaImagen))
-			
-	
+			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=Infrarojo&nombre={0}&fecha={1}&imagen=None".format(mov,fechaImagen))
+			self.ea = estadoAlarma.Sonando
+			comunicacion.notificaHTTP("/api?action=cambiarestado&estado=Sonando")
+		
+
 	def consultaEstadoWeb(self):
-		webdata = comunicacion.consultaHTTP("consultar/estado");
+		webdata = comunicacion.consultaHTTP("/rest?action=consultarestado")
 
 		if webdata["estado"] == "Inactiva":
 			print "setea el estado inactiva"
@@ -83,7 +87,7 @@ class alarmaMonitor (threading.Thread):
 			webdata = "Activa"
 		if self.ea is estadoAlarma.Sonando:
 			webdata = "Sonando"
-		comunicacion.notificaHTTP("cambiar/estado/"+webdata)
+		comunicacion.notificaHTTP("/api?action=cambiarestado&estado="+webdata)
 
 	def ingresaContrasena(self,char):
 		self.contadorPass += 1

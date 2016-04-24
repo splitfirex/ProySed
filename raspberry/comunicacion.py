@@ -3,7 +3,7 @@ import time
 import requests
 
 class comunicacion:
-	url = "http://localhost:8081/"
+	url = "http://localhost:8888"
 	bus = '1'
 	address = 1234
 	params = {"verbose": False}
