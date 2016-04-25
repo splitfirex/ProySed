@@ -1,0 +1,1277 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+CurrentFrameBuffer  0x4               ..\obj\main.o
+aktColor            0x2               ..\obj\main.o
+LCD_DISPLAY_MODE    0x1               ..\obj\main.o
+Touch_Data          0x6               ..\obj\main.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 ..\obj\stm32_ub_sdram.o
+ .data          0x00000000        0x0 ..\obj\stm32_ub_sdram.o
+ .text.UB_SDRAM_Write8b
+                0x00000000       0x20 ..\obj\stm32_ub_sdram.o
+ .text.UB_SDRAM_Read8b
+                0x00000000       0x28 ..\obj\stm32_ub_sdram.o
+ .text.UB_SDRAM_Write32b
+                0x00000000       0x20 ..\obj\stm32_ub_sdram.o
+ .text.UB_SDRAM_Read32b
+                0x00000000       0x28 ..\obj\stm32_ub_sdram.o
+ .text.UB_SDRAM_WriteBuffer32b
+                0x00000000       0x64 ..\obj\stm32_ub_sdram.o
+ .text.UB_SDRAM_ReadBuffer32b
+                0x00000000       0x58 ..\obj\stm32_ub_sdram.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_dma2d.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_dma2d.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_StructInit
+                0x00000000       0x64 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_AbortTransfer
+                0x00000000       0x1c ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_Suspend
+                0x00000000       0x38 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_FGConfig
+                0x00000000      0x100 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_FG_StructInit
+                0x00000000       0x6c ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_BGConfig
+                0x00000000      0x100 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_BG_StructInit
+                0x00000000       0x6c ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_FGStart
+                0x00000000       0x38 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_BGStart
+                0x00000000       0x38 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_DeadTimeConfig
+                0x00000000       0x5c ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_LineWatermarkConfig
+                0x00000000       0x1c ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_ITConfig
+                0x00000000       0x44 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_ClearFlag
+                0x00000000       0x1c ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_GetITStatus
+                0x00000000       0x68 ..\obj\stm32f4xx_dma2d.o
+ .text.DMA2D_ClearITPendingBit
+                0x00000000       0x24 ..\obj\stm32f4xx_dma2d.o
+ .text          0x00000000        0x0 ..\obj\stm32_ub_i2c3.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_ltdc.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_ltdc.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_DeInit
+                0x00000000       0x20 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_StructInit
+                0x00000000       0x8c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_GetRGBWidth
+                0x00000000       0x60 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_RGBStructInit
+                0x00000000       0x2c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LIPConfig
+                0x00000000       0x1c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LayerStructInit
+                0x00000000       0x94 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_GetPosStatus
+                0x00000000       0x48 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_PosStructInit
+                0x00000000       0x24 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_GetCDStatus
+                0x00000000       0x38 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_ColorKeyingConfig
+                0x00000000       0x88 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_ColorKeyingStructInit
+                0x00000000       0x2c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_CLUTCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_CLUTInit
+                0x00000000       0x58 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_CLUTStructInit
+                0x00000000       0x34 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LayerPosition
+                0x00000000      0x104 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LayerAlpha
+                0x00000000       0x1c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LayerAddress
+                0x00000000       0x1c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LayerSize
+                0x00000000       0xe8 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_LayerPixelFormat
+                0x00000000       0xd8 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_ITConfig
+                0x00000000       0x44 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_GetFlagStatus
+                0x00000000       0x3c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_ClearFlag
+                0x00000000       0x1c ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_GetITStatus
+                0x00000000       0x60 ..\obj\stm32f4xx_ltdc.o
+ .text.LTDC_ClearITPendingBit
+                0x00000000       0x1c ..\obj\stm32f4xx_ltdc.o
+ .text          0x00000000        0x0 ..\obj\startup_stm32f4xx.o
+ .data          0x00000000        0x0 ..\obj\startup_stm32f4xx.o
+ .bss           0x00000000        0x0 ..\obj\startup_stm32f4xx.o
+ .text          0x00000000        0x0 ..\obj\main.o
+ .data          0x00000000        0x0 ..\obj\main.o
+ .bss           0x00000000        0x0 ..\obj\main.o
+ .text.P_drawScreen
+                0x00000000      0x1c8 ..\obj\main.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_rcc.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_DeInit
+                0x00000000       0x74 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_HSEConfig
+                0x00000000       0x28 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_WaitForHSEStartUp
+                0x00000000       0x64 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AdjustHSICalibrationValue
+                0x00000000       0x40 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_HSICmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_LSEConfig
+                0x00000000       0x48 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_LSICmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_PLLConfig
+                0x00000000       0x48 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_PLLCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_PLLI2SConfig
+                0x00000000       0x38 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_PLLI2SCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_ClockSecuritySystemCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_MCO1Config
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_MCO2Config
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_SYSCLKConfig
+                0x00000000       0x3c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_GetSYSCLKSource
+                0x00000000       0x1c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_HCLKConfig
+                0x00000000       0x3c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_PCLK1Config
+                0x00000000       0x3c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_PCLK2Config
+                0x00000000       0x40 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_RTCCLKConfig
+                0x00000000       0x64 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_RTCCLKCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_BackupResetCmd
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_I2SCLKConfig
+                0x00000000       0x1c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_SAIPLLI2SClkDivConfig
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_SAIPLLSAIClkDivConfig
+                0x00000000       0x48 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_SAIBlockACLKConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_SAIBlockBCLKConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_TIMCLKPresConfig
+                0x00000000       0x1c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AHB2PeriphClockCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AHB2PeriphResetCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AHB3PeriphResetCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AHB1PeriphClockLPModeCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AHB2PeriphClockLPModeCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_AHB3PeriphClockLPModeCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_APB1PeriphClockLPModeCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_APB2PeriphClockLPModeCmd
+                0x00000000       0x44 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_ITConfig
+                0x00000000       0x50 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_ClearFlag
+                0x00000000       0x1c ..\obj\stm32f4xx_rcc.o
+ .text.RCC_GetITStatus
+                0x00000000       0x40 ..\obj\stm32f4xx_rcc.o
+ .text.RCC_ClearITPendingBit
+                0x00000000       0x20 ..\obj\stm32f4xx_rcc.o
+ .text          0x00000000        0x0 ..\obj\stm32_ub_lcd_ili9341.o
+ .text.UB_LCD_SetTransparency
+                0x00000000       0x44 ..\obj\stm32_ub_lcd_ili9341.o
+ .text.UB_LCD_SetMode
+                0x00000000       0x30 ..\obj\stm32_ub_lcd_ili9341.o
+ .text.UB_LCD_Rotate_0
+                0x00000000       0x18 ..\obj\stm32_ub_lcd_ili9341.o
+ .text.UB_LCD_Rotate_180
+                0x00000000       0x18 ..\obj\stm32_ub_lcd_ili9341.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_gpio.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_gpio.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_DeInit
+                0x00000000      0x1b0 ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_StructInit
+                0x00000000       0x3c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_PinLockConfig
+                0x00000000       0x44 ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_ReadInputDataBit
+                0x00000000       0x3c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_ReadInputData
+                0x00000000       0x1c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_ReadOutputDataBit
+                0x00000000       0x3c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_ReadOutputData
+                0x00000000       0x1c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_SetBits
+                0x00000000       0x1c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_ResetBits
+                0x00000000       0x1c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_WriteBit
+                0x00000000       0x30 ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_Write
+                0x00000000       0x1c ..\obj\stm32f4xx_gpio.o
+ .text.GPIO_ToggleBits
+                0x00000000       0x24 ..\obj\stm32f4xx_gpio.o
+ .text          0x00000000        0x0 ..\obj\stm32_ub_font.o
+ .data          0x00000000        0x0 ..\obj\stm32_ub_font.o
+ .bss           0x00000000        0x0 ..\obj\stm32_ub_font.o
+ .text.UB_Font_DrawChar32
+                0x00000000      0x188 ..\obj\stm32_ub_font.o
+ .text.UB_Font_DrawString32
+                0x00000000       0xa0 ..\obj\stm32_ub_font.o
+ .text          0x00000000        0x0 ..\obj\system_stm32f4xx.o
+ .data          0x00000000       0x14 ..\obj\system_stm32f4xx.o
+ .bss           0x00000000        0x0 ..\obj\system_stm32f4xx.o
+ .text.SystemCoreClockUpdate
+                0x00000000      0x114 ..\obj\system_stm32f4xx.o
+ .text          0x00000000        0x0 ..\obj\syscalls.o
+ .data          0x00000000        0x0 ..\obj\syscalls.o
+ .bss           0x00000000        0x4 ..\obj\syscalls.o
+ .text._sbrk    0x00000000       0x40 ..\obj\syscalls.o
+ .text.link     0x00000000       0x1c ..\obj\syscalls.o
+ .text._close   0x00000000       0x18 ..\obj\syscalls.o
+ .text._fstat   0x00000000       0x24 ..\obj\syscalls.o
+ .text._isatty  0x00000000       0x18 ..\obj\syscalls.o
+ .text._lseek   0x00000000       0x1c ..\obj\syscalls.o
+ .text._read    0x00000000       0x1c ..\obj\syscalls.o
+ .text._write   0x00000000       0x1c ..\obj\syscalls.o
+ .text.abort    0x00000000        0x8 ..\obj\syscalls.o
+ .text          0x00000000        0x0 ..\obj\stm32_ub_spi5.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_fmc.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_fmc.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NORSRAMDeInit
+                0x00000000       0x58 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NORSRAMInit
+                0x00000000      0x1b8 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NORSRAMStructInit
+                0x00000000      0x110 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NORSRAMCmd
+                0x00000000       0x54 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NANDDeInit
+                0x00000000       0x64 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NANDInit
+                0x00000000       0xe8 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NANDStructInit
+                0x00000000       0x9c ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NANDCmd
+                0x00000000       0x70 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_NANDECCCmd
+                0x00000000       0x70 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_GetECC
+                0x00000000       0x38 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_PCCARDDeInit
+                0x00000000       0x38 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_PCCARDInit
+                0x00000000       0xc8 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_PCCARDStructInit
+                0x00000000       0xa4 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_PCCARDCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_SDRAMDeInit
+                0x00000000       0x4c ..\obj\stm32f4xx_fmc.o
+ .text.FMC_SDRAMStructInit
+                0x00000000       0xa8 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_GetModeStatus
+                0x00000000       0x40 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_SetAutoRefresh_Number
+                0x00000000       0x28 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_SDRAMWriteProtectionConfig
+                0x00000000       0x50 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_ITConfig
+                0x00000000       0xe8 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_ClearFlag
+                0x00000000       0x88 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_GetITStatus
+                0x00000000       0xc8 ..\obj\stm32f4xx_fmc.o
+ .text.FMC_ClearITPendingBit
+                0x00000000       0x90 ..\obj\stm32f4xx_fmc.o
+ .text          0x00000000        0x0 ..\obj\ub_font_arial_11x18.o
+ .bss           0x00000000        0x0 ..\obj\ub_font_arial_11x18.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_spi.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_spi.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_spi.o
+ .text.I2S_Init
+                0x00000000      0x1fc ..\obj\stm32f4xx_spi.o
+ .text.SPI_StructInit
+                0x00000000       0x5c ..\obj\stm32f4xx_spi.o
+ .text.I2S_StructInit
+                0x00000000       0x44 ..\obj\stm32f4xx_spi.o
+ .text.I2S_Cmd  0x00000000       0x40 ..\obj\stm32f4xx_spi.o
+ .text.SPI_DataSizeConfig
+                0x00000000       0x38 ..\obj\stm32f4xx_spi.o
+ .text.SPI_BiDirectionalLineConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_spi.o
+ .text.SPI_NSSInternalSoftwareConfig
+                0x00000000       0x44 ..\obj\stm32f4xx_spi.o
+ .text.SPI_SSOutputCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_spi.o
+ .text.SPI_TIModeCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_spi.o
+ .text.I2S_FullDuplexConfig
+                0x00000000       0xac ..\obj\stm32f4xx_spi.o
+ .text.SPI_CalculateCRC
+                0x00000000       0x40 ..\obj\stm32f4xx_spi.o
+ .text.SPI_TransmitCRC
+                0x00000000       0x24 ..\obj\stm32f4xx_spi.o
+ .text.SPI_GetCRC
+                0x00000000       0x34 ..\obj\stm32f4xx_spi.o
+ .text.SPI_GetCRCPolynomial
+                0x00000000       0x1c ..\obj\stm32f4xx_spi.o
+ .text.SPI_I2S_DMACmd
+                0x00000000       0x4c ..\obj\stm32f4xx_spi.o
+ .text.SPI_I2S_ITConfig
+                0x00000000       0x70 ..\obj\stm32f4xx_spi.o
+ .text.SPI_I2S_ClearFlag
+                0x00000000       0x24 ..\obj\stm32f4xx_spi.o
+ .text.SPI_I2S_GetITStatus
+                0x00000000       0x8c ..\obj\stm32f4xx_spi.o
+ .text.SPI_I2S_ClearITPendingBit
+                0x00000000       0x38 ..\obj\stm32f4xx_spi.o
+ .text          0x00000000        0x0 ..\obj\stm32f4xx_i2c.o
+ .data          0x00000000        0x0 ..\obj\stm32f4xx_i2c.o
+ .bss           0x00000000        0x0 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_StructInit
+                0x00000000       0x44 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_AnalogFilterCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_DigitalFilterConfig
+                0x00000000       0x44 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_OwnAddress2Config
+                0x00000000       0x44 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_DualAddressCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_GeneralCallCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_StretchClockCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_FastModeDutyCycleConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_NACKPositionConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_SMBusAlertConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_ARPCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_TransmitPEC
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_PECPositionConfig
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_CalculatePEC
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_GetPEC
+                0x00000000       0x24 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_DMACmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_DMALastTransferCmd
+                0x00000000       0x40 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_ReadRegister
+                0x00000000       0x30 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_ITConfig
+                0x00000000       0x4c ..\obj\stm32f4xx_i2c.o
+ .text.I2C_CheckEvent
+                0x00000000       0x70 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_GetLastEvent
+                0x00000000       0x50 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_ClearFlag
+                0x00000000       0x30 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_GetITStatus
+                0x00000000       0x68 ..\obj\stm32f4xx_i2c.o
+ .text.I2C_ClearITPendingBit
+                0x00000000       0x30 ..\obj\stm32f4xx_i2c.o
+ .text          0x00000000        0x0 ..\obj\stm32_ub_touch_stmpe811.o
+ .data          0x00000000        0x0 ..\obj\stm32_ub_touch_stmpe811.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x08000000         0x00100000         xr
+ram              0x20000000         0x00020000         xrw
+ram1             0x10000000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x20020000                _eram = 0x20020000
+
+.text           0x08000000     0x4e5c
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x1ac ..\obj\startup_stm32f4xx.o
+                0x08000000                g_pfnVectors
+ *(.text*)
+ .text.UB_SDRAM_Init
+                0x080001ac       0x98 ..\obj\stm32_ub_sdram.o
+                0x080001ac                UB_SDRAM_Init
+ .text.UB_SDRAM_Write16b
+                0x08000244       0x20 ..\obj\stm32_ub_sdram.o
+                0x08000244                UB_SDRAM_Write16b
+ .text.UB_SDRAM_Read16b
+                0x08000264       0x28 ..\obj\stm32_ub_sdram.o
+                0x08000264                UB_SDRAM_Read16b
+ .text.P_SDRAM_InitIO
+                0x0800028c      0x2c0 ..\obj\stm32_ub_sdram.o
+                0x0800028c                P_SDRAM_InitIO
+ .text.P_SDRAM_InitFMC
+                0x0800054c       0x94 ..\obj\stm32_ub_sdram.o
+                0x0800054c                P_SDRAM_InitFMC
+ .text.P_SDRAM_InitSequence
+                0x080005e0      0x134 ..\obj\stm32_ub_sdram.o
+                0x080005e0                P_SDRAM_InitSequence
+ .text.P_SDRAM_delay
+                0x08000714       0x38 ..\obj\stm32_ub_sdram.o
+ .text.DMA2D_DeInit
+                0x0800074c       0x20 ..\obj\stm32f4xx_dma2d.o
+                0x0800074c                DMA2D_DeInit
+ .text.DMA2D_Init
+                0x0800076c      0x194 ..\obj\stm32f4xx_dma2d.o
+                0x0800076c                DMA2D_Init
+ .text.DMA2D_StartTransfer
+                0x08000900       0x1c ..\obj\stm32f4xx_dma2d.o
+                0x08000900                DMA2D_StartTransfer
+ .text.DMA2D_GetFlagStatus
+                0x0800091c       0x3c ..\obj\stm32f4xx_dma2d.o
+                0x0800091c                DMA2D_GetFlagStatus
+ .text.UB_I2C3_Init
+                0x08000958       0xd8 ..\obj\stm32_ub_i2c3.o
+                0x08000958                UB_I2C3_Init
+ .text.UB_I2C3_ReadByte
+                0x08000a30      0x218 ..\obj\stm32_ub_i2c3.o
+                0x08000a30                UB_I2C3_ReadByte
+ .text.UB_I2C3_WriteByte
+                0x08000c48      0x188 ..\obj\stm32_ub_i2c3.o
+                0x08000c48                UB_I2C3_WriteByte
+ .text.UB_I2C3_Delay
+                0x08000dd0       0x2c ..\obj\stm32_ub_i2c3.o
+                0x08000dd0                UB_I2C3_Delay
+ .text.P_I2C3_InitI2C
+                0x08000dfc       0x4c ..\obj\stm32_ub_i2c3.o
+                0x08000dfc                P_I2C3_InitI2C
+ .text.P_I2C3_timeout
+                0x08000e48       0x48 ..\obj\stm32_ub_i2c3.o
+                0x08000e48                P_I2C3_timeout
+ .text.LTDC_Init
+                0x08000e90      0x168 ..\obj\stm32f4xx_ltdc.o
+                0x08000e90                LTDC_Init
+ .text.LTDC_Cmd
+                0x08000ff8       0x38 ..\obj\stm32f4xx_ltdc.o
+                0x08000ff8                LTDC_Cmd
+ .text.LTDC_DitherCmd
+                0x08001030       0x38 ..\obj\stm32f4xx_ltdc.o
+                0x08001030                LTDC_DitherCmd
+ .text.LTDC_ReloadConfig
+                0x08001068       0x1c ..\obj\stm32f4xx_ltdc.o
+                0x08001068                LTDC_ReloadConfig
+ .text.LTDC_LayerInit
+                0x08001084      0x150 ..\obj\stm32f4xx_ltdc.o
+                0x08001084                LTDC_LayerInit
+ .text.LTDC_LayerCmd
+                0x080011d4       0x38 ..\obj\stm32f4xx_ltdc.o
+                0x080011d4                LTDC_LayerCmd
+ .text.Default_Reset_Handler
+                0x0800120c       0x64 ..\obj\startup_stm32f4xx.o
+                0x0800120c                Default_Reset_Handler
+                0x0800120c                Reset_Handler
+ .text.Default_Handler
+                0x08001270        0x8 ..\obj\startup_stm32f4xx.o
+                0x08001270                RTC_Alarm_IRQHandler
+                0x08001270                HASH_RNG_IRQHandler
+                0x08001270                EXTI2_IRQHandler
+                0x08001270                TIM8_CC_IRQHandler
+                0x08001270                DebugMon_Handler
+                0x08001270                UART8_IRQHandler
+                0x08001270                SPI4_IRQHandler
+                0x08001270                TIM1_CC_IRQHandler
+                0x08001270                DMA2_Stream5_IRQHandler
+                0x08001270                HardFault_Handler
+                0x08001270                DMA1_Stream5_IRQHandler
+                0x08001270                SysTick_Handler
+                0x08001270                PVD_IRQHandler
+                0x08001270                SDIO_IRQHandler
+                0x08001270                TAMP_STAMP_IRQHandler
+                0x08001270                PendSV_Handler
+                0x08001270                NMI_Handler
+                0x08001270                CAN2_RX1_IRQHandler
+                0x08001270                EXTI3_IRQHandler
+                0x08001270                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08001270                TIM1_UP_TIM10_IRQHandler
+                0x08001270                TIM8_UP_TIM13_IRQHandler
+                0x08001270                I2C3_ER_IRQHandler
+                0x08001270                EXTI0_IRQHandler
+                0x08001270                I2C2_EV_IRQHandler
+                0x08001270                DMA1_Stream2_IRQHandler
+                0x08001270                CAN1_RX0_IRQHandler
+                0x08001270                FPU_IRQHandler
+                0x08001270                OTG_HS_WKUP_IRQHandler
+                0x08001270                UsageFault_Handler
+                0x08001270                LTDC_ER_IRQHandler
+                0x08001270                CAN2_SCE_IRQHandler
+                0x08001270                DMA2_Stream2_IRQHandler
+                0x08001270                SPI1_IRQHandler
+                0x08001270                TIM6_DAC_IRQHandler
+                0x08001270                TIM1_BRK_TIM9_IRQHandler
+                0x08001270                DCMI_IRQHandler
+                0x08001270                CAN2_RX0_IRQHandler
+                0x08001270                DMA2_Stream3_IRQHandler
+                0x08001270                USART6_IRQHandler
+                0x08001270                USART3_IRQHandler
+                0x08001270                CRYP_IRQHandler
+                0x08001270                CAN1_RX1_IRQHandler
+                0x08001270                UART5_IRQHandler
+                0x08001270                DMA2_Stream0_IRQHandler
+                0x08001270                TIM4_IRQHandler
+                0x08001270                I2C1_EV_IRQHandler
+                0x08001270                DMA1_Stream6_IRQHandler
+                0x08001270                DMA1_Stream1_IRQHandler
+                0x08001270                UART4_IRQHandler
+                0x08001270                TIM3_IRQHandler
+                0x08001270                RCC_IRQHandler
+                0x08001270                TIM8_BRK_TIM12_IRQHandler
+                0x08001270                EXTI15_10_IRQHandler
+                0x08001270                ADC_IRQHandler
+                0x08001270                DMA1_Stream7_IRQHandler
+                0x08001270                SPI5_IRQHandler
+                0x08001270                TIM7_IRQHandler
+                0x08001270                CAN2_TX_IRQHandler
+                0x08001270                TIM5_IRQHandler
+                0x08001270                DMA2_Stream7_IRQHandler
+                0x08001270                I2C3_EV_IRQHandler
+                0x08001270                EXTI9_5_IRQHandler
+                0x08001270                RTC_WKUP_IRQHandler
+                0x08001270                LTDC_IRQHandler
+                0x08001270                ETH_WKUP_IRQHandler
+                0x08001270                SPI2_IRQHandler
+                0x08001270                OTG_HS_EP1_IN_IRQHandler
+                0x08001270                MemManage_Handler
+                0x08001270                DMA1_Stream0_IRQHandler
+                0x08001270                CAN1_TX_IRQHandler
+                0x08001270                SVC_Handler
+                0x08001270                EXTI4_IRQHandler
+                0x08001270                ETH_IRQHandler
+                0x08001270                OTG_HS_EP1_OUT_IRQHandler
+                0x08001270                WWDG_IRQHandler
+                0x08001270                SPI6_IRQHandler
+                0x08001270                TIM2_IRQHandler
+                0x08001270                OTG_FS_WKUP_IRQHandler
+                0x08001270                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08001270                OTG_HS_IRQHandler
+                0x08001270                DMA2D_IRQHandler
+                0x08001270                EXTI1_IRQHandler
+                0x08001270                UART7_IRQHandler
+                0x08001270                USART2_IRQHandler
+                0x08001270                I2C2_ER_IRQHandler
+                0x08001270                DMA2_Stream1_IRQHandler
+                0x08001270                CAN1_SCE_IRQHandler
+                0x08001270                FLASH_IRQHandler
+                0x08001270                DMA2_Stream4_IRQHandler
+                0x08001270                BusFault_Handler
+                0x08001270                USART1_IRQHandler
+                0x08001270                OTG_FS_IRQHandler
+                0x08001270                SPI3_IRQHandler
+                0x08001270                DMA1_Stream4_IRQHandler
+                0x08001270                I2C1_ER_IRQHandler
+                0x08001270                FMC_IRQHandler
+                0x08001270                DMA2_Stream6_IRQHandler
+                0x08001270                SAI1_IRQHandler
+                0x08001270                DMA1_Stream3_IRQHandler
+ .text.main     0x08001278      0x348 ..\obj\main.o
+                0x08001278                main
+ .text.P_dibujar_cuadro
+                0x080015c0       0x9c ..\obj\main.o
+                0x080015c0                P_dibujar_cuadro
+ .text.P_drawClear
+                0x0800165c       0x68 ..\obj\main.o
+                0x0800165c                P_drawClear
+ .text.LCD_DrawFullRect
+                0x080016c4       0xcc ..\obj\main.o
+                0x080016c4                LCD_DrawFullRect
+ .text.LCD_DrawLine
+                0x08001790       0xe4 ..\obj\main.o
+                0x08001790                LCD_DrawLine
+ .text.LCD_DrawRect
+                0x08001874       0x84 ..\obj\main.o
+                0x08001874                LCD_DrawRect
+ .text.LCD_DrawFullCircle
+                0x080018f8      0x14c ..\obj\main.o
+                0x080018f8                LCD_DrawFullCircle
+ .text.LCD_DrawCircle
+                0x08001a44      0x14c ..\obj\main.o
+                0x08001a44                LCD_DrawCircle
+ .text.RCC_PLLSAIConfig
+                0x08001b90       0x38 ..\obj\stm32f4xx_rcc.o
+                0x08001b90                RCC_PLLSAIConfig
+ .text.RCC_PLLSAICmd
+                0x08001bc8       0x20 ..\obj\stm32f4xx_rcc.o
+                0x08001bc8                RCC_PLLSAICmd
+ .text.RCC_GetClocksFreq
+                0x08001be8      0x17c ..\obj\stm32f4xx_rcc.o
+                0x08001be8                RCC_GetClocksFreq
+ .text.RCC_LTDCCLKDivConfig
+                0x08001d64       0x40 ..\obj\stm32f4xx_rcc.o
+                0x08001d64                RCC_LTDCCLKDivConfig
+ .text.RCC_AHB1PeriphClockCmd
+                0x08001da4       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001da4                RCC_AHB1PeriphClockCmd
+ .text.RCC_AHB3PeriphClockCmd
+                0x08001de8       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001de8                RCC_AHB3PeriphClockCmd
+ .text.RCC_APB1PeriphClockCmd
+                0x08001e2c       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001e2c                RCC_APB1PeriphClockCmd
+ .text.RCC_APB2PeriphClockCmd
+                0x08001e70       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001e70                RCC_APB2PeriphClockCmd
+ .text.RCC_AHB1PeriphResetCmd
+                0x08001eb4       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001eb4                RCC_AHB1PeriphResetCmd
+ .text.RCC_APB1PeriphResetCmd
+                0x08001ef8       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001ef8                RCC_APB1PeriphResetCmd
+ .text.RCC_APB2PeriphResetCmd
+                0x08001f3c       0x44 ..\obj\stm32f4xx_rcc.o
+                0x08001f3c                RCC_APB2PeriphResetCmd
+ .text.RCC_GetFlagStatus
+                0x08001f80       0x84 ..\obj\stm32f4xx_rcc.o
+                0x08001f80                RCC_GetFlagStatus
+ .text.UB_LCD_Init
+                0x08002004       0x68 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002004                UB_LCD_Init
+ .text.UB_LCD_LayerInit_Fullscreen
+                0x0800206c       0xd4 ..\obj\stm32_ub_lcd_ili9341.o
+                0x0800206c                UB_LCD_LayerInit_Fullscreen
+ .text.UB_LCD_SetLayer_1
+                0x08002140       0x24 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002140                UB_LCD_SetLayer_1
+ .text.UB_LCD_SetLayer_2
+                0x08002164       0x24 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002164                UB_LCD_SetLayer_2
+ .text.UB_LCD_FillLayer
+                0x08002188       0x4c ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002188                UB_LCD_FillLayer
+ .text.UB_LCD_SetCursor2Draw
+                0x080021d4       0x60 ..\obj\stm32_ub_lcd_ili9341.o
+                0x080021d4                UB_LCD_SetCursor2Draw
+ .text.UB_LCD_DrawPixel
+                0x08002234       0xe4 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002234                UB_LCD_DrawPixel
+ .text.P_LCD9341_InitIO
+                0x08002318       0x88 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002318                P_LCD9341_InitIO
+ .text.P_LCD9341_InitLTCD
+                0x080023a0       0xc0 ..\obj\stm32_ub_lcd_ili9341.o
+                0x080023a0                P_LCD9341_InitLTCD
+ .text.P_LCD9341_CS
+                0x08002460       0x30 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002460                P_LCD9341_CS
+ .text.P_LCD9341_WRX
+                0x08002490       0x30 ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002490                P_LCD9341_WRX
+ .text.P_LCD9341_InitChip
+                0x080024c0      0x368 ..\obj\stm32_ub_lcd_ili9341.o
+                0x080024c0                P_LCD9341_InitChip
+ .text.P_LCD9341_CMD
+                0x08002828       0x3c ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002828                P_LCD9341_CMD
+ .text.P_LCD9341_DATA
+                0x08002864       0x3c ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002864                P_LCD9341_DATA
+ .text.P_LCD9341_AFConfig
+                0x080028a0      0x1e0 ..\obj\stm32_ub_lcd_ili9341.o
+                0x080028a0                P_LCD9341_AFConfig
+ .text.P_LCD9341_Delay
+                0x08002a80       0x2c ..\obj\stm32_ub_lcd_ili9341.o
+                0x08002a80                P_LCD9341_Delay
+ .text.GPIO_Init
+                0x08002aac      0x148 ..\obj\stm32f4xx_gpio.o
+                0x08002aac                GPIO_Init
+ .text.GPIO_PinAFConfig
+                0x08002bf4       0xac ..\obj\stm32f4xx_gpio.o
+                0x08002bf4                GPIO_PinAFConfig
+ .text.UB_Font_DrawChar
+                0x08002ca0      0x170 ..\obj\stm32_ub_font.o
+                0x08002ca0                UB_Font_DrawChar
+ .text.UB_Font_DrawString
+                0x08002e10       0xa0 ..\obj\stm32_ub_font.o
+                0x08002e10                UB_Font_DrawString
+ .text.SystemInit
+                0x08002eb0       0x5c ..\obj\system_stm32f4xx.o
+                0x08002eb0                SystemInit
+ .text.SetSysClock
+                0x08002f0c      0x134 ..\obj\system_stm32f4xx.o
+ .text.UB_SPI5_Init
+                0x08003040      0x1fc ..\obj\stm32_ub_spi5.o
+                0x08003040                UB_SPI5_Init
+ .text.UB_SPI5_SendByte
+                0x0800323c       0x5c ..\obj\stm32_ub_spi5.o
+                0x0800323c                UB_SPI5_SendByte
+ .text.FMC_SDRAMInit
+                0x08003298      0x1a0 ..\obj\stm32f4xx_fmc.o
+                0x08003298                FMC_SDRAMInit
+ .text.FMC_SDRAMCmdConfig
+                0x08003438       0x48 ..\obj\stm32f4xx_fmc.o
+                0x08003438                FMC_SDRAMCmdConfig
+ .text.FMC_SetRefreshCount
+                0x08003480       0x28 ..\obj\stm32f4xx_fmc.o
+                0x08003480                FMC_SetRefreshCount
+ .text.FMC_GetFlagStatus
+                0x080034a8       0x84 ..\obj\stm32f4xx_fmc.o
+                0x080034a8                FMC_GetFlagStatus
+ .text.SPI_I2S_DeInit
+                0x0800352c       0xf4 ..\obj\stm32f4xx_spi.o
+                0x0800352c                SPI_I2S_DeInit
+ .text.SPI_Init
+                0x08003620       0x98 ..\obj\stm32f4xx_spi.o
+                0x08003620                SPI_Init
+ .text.SPI_Cmd  0x080036b8       0x40 ..\obj\stm32f4xx_spi.o
+                0x080036b8                SPI_Cmd
+ .text.SPI_I2S_ReceiveData
+                0x080036f8       0x1c ..\obj\stm32f4xx_spi.o
+                0x080036f8                SPI_I2S_ReceiveData
+ .text.SPI_I2S_SendData
+                0x08003714       0x1c ..\obj\stm32f4xx_spi.o
+                0x08003714                SPI_I2S_SendData
+ .text.SPI_I2S_GetFlagStatus
+                0x08003730       0x40 ..\obj\stm32f4xx_spi.o
+                0x08003730                SPI_I2S_GetFlagStatus
+ .text.I2C_DeInit
+                0x08003770       0x80 ..\obj\stm32f4xx_i2c.o
+                0x08003770                I2C_DeInit
+ .text.I2C_Init
+                0x080037f0      0x1b0 ..\obj\stm32f4xx_i2c.o
+                0x080037f0                I2C_Init
+ .text.I2C_Cmd  0x080039a0       0x40 ..\obj\stm32f4xx_i2c.o
+                0x080039a0                I2C_Cmd
+ .text.I2C_GenerateSTART
+                0x080039e0       0x40 ..\obj\stm32f4xx_i2c.o
+                0x080039e0                I2C_GenerateSTART
+ .text.I2C_GenerateSTOP
+                0x08003a20       0x40 ..\obj\stm32f4xx_i2c.o
+                0x08003a20                I2C_GenerateSTOP
+ .text.I2C_Send7bitAddress
+                0x08003a60       0x3c ..\obj\stm32f4xx_i2c.o
+                0x08003a60                I2C_Send7bitAddress
+ .text.I2C_AcknowledgeConfig
+                0x08003a9c       0x40 ..\obj\stm32f4xx_i2c.o
+                0x08003a9c                I2C_AcknowledgeConfig
+ .text.I2C_SoftwareResetCmd
+                0x08003adc       0x48 ..\obj\stm32f4xx_i2c.o
+                0x08003adc                I2C_SoftwareResetCmd
+ .text.I2C_SendData
+                0x08003b24       0x20 ..\obj\stm32f4xx_i2c.o
+                0x08003b24                I2C_SendData
+ .text.I2C_ReceiveData
+                0x08003b44       0x1c ..\obj\stm32f4xx_i2c.o
+                0x08003b44                I2C_ReceiveData
+ .text.I2C_GetFlagStatus
+                0x08003b60       0x7c ..\obj\stm32f4xx_i2c.o
+                0x08003b60                I2C_GetFlagStatus
+ .text.UB_Touch_Init
+                0x08003bdc       0x4c ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003bdc                UB_Touch_Init
+ .text.UB_Touch_Read
+                0x08003c28       0xf8 ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003c28                UB_Touch_Read
+ .text.P_Touch_Reset
+                0x08003d20       0x30 ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003d20                P_Touch_Reset
+ .text.P_Touch_FnctCmd
+                0x08003d50       0x78 ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003d50                P_Touch_FnctCmd
+ .text.P_Touch_Config
+                0x08003dc8       0xe4 ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003dc8                P_Touch_Config
+ .text.P_Touch_ReadID
+                0x08003eac       0x70 ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003eac                P_Touch_ReadID
+ .text.P_Touch_IOAFConfig
+                0x08003f1c       0x78 ..\obj\stm32_ub_touch_stmpe811.o
+                0x08003f1c                P_Touch_IOAFConfig
+ .text.P_Touch_Read_X
+                0x08003f94       0x78 ..\obj\stm32_ub_touch_stmpe811.o
+ .text.P_Touch_Read_Y
+                0x0800400c       0x60 ..\obj\stm32_ub_touch_stmpe811.o
+ .text.P_Touch_Read_16b
+                0x0800406c       0x78 ..\obj\stm32_ub_touch_stmpe811.o
+                0x0800406c                P_Touch_Read_16b
+ *(.init)
+ *(.fini)
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+ *(.rodata*)
+ .rodata        0x080040e4       0x1c ..\obj\main.o
+ .rodata        0x08004100      0xd5c ..\obj\ub_font_arial_11x18.o
+                0x08004100                Arial_11x18_Table
+ *(.eh_fram e*)
+
+.glue_7         0x08004e5c        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x08004e5c        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x08004e5c        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x08004e5c        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x08004e5c                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x08004e5c                __exidx_end = .
+                0x08004e5c                __etext = .
+                0x08004e5c                _sidata = __etext
+
+.data           0x20000000       0x6c load address 0x08004e5c
+                0x20000000                __data_start__ = .
+                0x20000000                _sdata = __data_start__
+ *(vtable)
+ *(.data*)
+ .data          0x20000000       0x20 ..\obj\stm32_ub_i2c3.o
+                0x20000000                I2C3DEV
+ .data          0x20000020       0x10 ..\obj\stm32f4xx_rcc.o
+ .data          0x20000030        0x4 ..\obj\stm32_ub_lcd_ili9341.o
+ .data          0x20000034       0x30 ..\obj\stm32_ub_spi5.o
+                0x20000034                SPI5DEV
+ .data          0x20000064        0x8 ..\obj\ub_font_arial_11x18.o
+                0x20000064                Arial_11x18
+                0x2000006c                . = ALIGN (0x4)
+                0x2000006c                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x2000006c                PROVIDE (__preinit_array_end, .)
+                0x2000006c                . = ALIGN (0x4)
+                0x2000006c                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x2000006c                PROVIDE (__init_array_end, .)
+                0x2000006c                . = ALIGN (0x4)
+                0x2000006c                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                0x2000006c                PROVIDE (__fini_array_end, .)
+ *(.jcr*)
+                0x2000006c                . = ALIGN (0x4)
+                0x2000006c                __data_end__ = .
+                0x2000006c                _edata = __data_end__
+
+.bss            0x2000006c       0x2c load address 0x08004ec8
+                0x2000006c                . = ALIGN (0x4)
+                0x2000006c                __bss_start__ = .
+                0x2000006c                _sbss = __bss_start__
+ *(.bss*)
+ .bss           0x2000006c        0x1 ..\obj\stm32_ub_sdram.o
+ .bss           0x2000006d        0x1 ..\obj\stm32_ub_i2c3.o
+ *fill*         0x2000006e        0x2 00
+ .bss           0x20000070        0xc ..\obj\stm32_ub_lcd_ili9341.o
+ .bss           0x2000007c        0x2 ..\obj\stm32_ub_spi5.o
+ *fill*         0x2000007e        0x2 00
+ .bss           0x20000080        0x8 ..\obj\stm32_ub_touch_stmpe811.o
+ *(COMMON)
+ COMMON         0x20000088        0xe ..\obj\main.o
+                0x20000088                CurrentFrameBuffer
+                0x2000008c                aktColor
+                0x2000008e                LCD_DISPLAY_MODE
+                0x20000090                Touch_Data
+                0x20000098                . = ALIGN (0x4)
+ *fill*         0x20000096        0x2 00
+                0x20000098                __bss_end__ = .
+                0x20000098                _ebss = __bss_end__
+
+.heap           0x20000098        0x0
+                0x20000098                __end__ = .
+                0x20000098                _end = __end__
+                0x20000098                end = __end__
+ *(.heap*)
+                0x20000098                __HeapLimit = .
+
+.co_stack       0x20000098      0x800 load address 0x08004ef4
+                0x20000098                . = ALIGN (0x8)
+ *(.co_stack .co_stack.*)
+ .co_stack      0x20000098      0x800 ..\obj\startup_stm32f4xx.o
+                0x20000098                pulStack
+                0x20020000                __StackTop = 0x20020000
+                0x2001f800                __StackLimit = (__StackTop - SIZEOF (.co_stack))
+                0x20020000                PROVIDE (__stack, __StackTop)
+                0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region ram  overflowed with stack)
+LOAD ..\obj\stm32_ub_sdram.o
+LOAD ..\obj\stm32f4xx_dma2d.o
+LOAD ..\obj\stm32_ub_i2c3.o
+LOAD ..\obj\stm32f4xx_ltdc.o
+LOAD ..\obj\startup_stm32f4xx.o
+LOAD ..\obj\main.o
+LOAD ..\obj\stm32f4xx_rcc.o
+LOAD ..\obj\stm32_ub_lcd_ili9341.o
+LOAD ..\obj\stm32f4xx_gpio.o
+LOAD ..\obj\stm32_ub_font.o
+LOAD ..\obj\system_stm32f4xx.o
+LOAD ..\obj\syscalls.o
+LOAD ..\obj\stm32_ub_spi5.o
+LOAD ..\obj\stm32f4xx_fmc.o
+LOAD ..\obj\ub_font_arial_11x18.o
+LOAD ..\obj\stm32f4xx_spi.o
+LOAD ..\obj\stm32f4xx_i2c.o
+LOAD ..\obj\stm32_ub_touch_stmpe811.o
+START GROUP
+LOAD c:/users/danie/desktop/embestucm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2\libgcc.a
+LOAD c:/users/danie/desktop/embestucm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+END GROUP
+OUTPUT(stm32f429.elf elf32-littlearm)
+
+.debug_abbrev   0x00000000     0x18b7
+ .debug_abbrev  0x00000000      0x191 ..\obj\stm32_ub_sdram.o
+ .debug_abbrev  0x00000191      0x175 ..\obj\stm32f4xx_dma2d.o
+ .debug_abbrev  0x00000306      0x1c4 ..\obj\stm32_ub_i2c3.o
+ .debug_abbrev  0x000004ca      0x184 ..\obj\stm32f4xx_ltdc.o
+ .debug_abbrev  0x0000064e       0xac ..\obj\startup_stm32f4xx.o
+ .debug_abbrev  0x000006fa      0x1f0 ..\obj\main.o
+ .debug_abbrev  0x000008ea      0x191 ..\obj\stm32f4xx_rcc.o
+ .debug_abbrev  0x00000a7b      0x1b0 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_abbrev  0x00000c2b      0x182 ..\obj\stm32f4xx_gpio.o
+ .debug_abbrev  0x00000dad      0x108 ..\obj\stm32_ub_font.o
+ .debug_abbrev  0x00000eb5      0x140 ..\obj\system_stm32f4xx.o
+ .debug_abbrev  0x00000ff5       0xde ..\obj\syscalls.o
+ .debug_abbrev  0x000010d3      0x159 ..\obj\stm32_ub_spi5.o
+ .debug_abbrev  0x0000122c      0x175 ..\obj\stm32f4xx_fmc.o
+ .debug_abbrev  0x000013a1       0xaf ..\obj\ub_font_arial_11x18.o
+ .debug_abbrev  0x00001450      0x160 ..\obj\stm32f4xx_spi.o
+ .debug_abbrev  0x000015b0      0x15d ..\obj\stm32f4xx_i2c.o
+ .debug_abbrev  0x0000170d      0x1aa ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_info     0x00000000     0x8b42
+ .debug_info    0x00000000      0x77e ..\obj\stm32_ub_sdram.o
+ .debug_info    0x0000077e      0x8ca ..\obj\stm32f4xx_dma2d.o
+ .debug_info    0x00001048      0x678 ..\obj\stm32_ub_i2c3.o
+ .debug_info    0x000016c0      0xde5 ..\obj\stm32f4xx_ltdc.o
+ .debug_info    0x000024a5      0x147 ..\obj\startup_stm32f4xx.o
+ .debug_info    0x000025ec      0x6ca ..\obj\main.o
+ .debug_info    0x00002cb6      0xf0e ..\obj\stm32f4xx_rcc.o
+ .debug_info    0x00003bc4      0x98d ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_info    0x00004551      0x63c ..\obj\stm32f4xx_gpio.o
+ .debug_info    0x00004b8d      0x3ef ..\obj\stm32_ub_font.o
+ .debug_info    0x00004f7c      0x650 ..\obj\system_stm32f4xx.o
+ .debug_info    0x000055cc      0x440 ..\obj\syscalls.o
+ .debug_info    0x00005a0c      0x632 ..\obj\stm32_ub_spi5.o
+ .debug_info    0x0000603e      0xd99 ..\obj\stm32f4xx_fmc.o
+ .debug_info    0x00006dd7      0x138 ..\obj\ub_font_arial_11x18.o
+ .debug_info    0x00006f0f      0xbec ..\obj\stm32f4xx_spi.o
+ .debug_info    0x00007afb      0xc30 ..\obj\stm32f4xx_i2c.o
+ .debug_info    0x0000872b      0x417 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_line     0x00000000     0x4191
+ .debug_line    0x00000000      0x3de ..\obj\stm32_ub_sdram.o
+ .debug_line    0x000003de      0x3d9 ..\obj\stm32f4xx_dma2d.o
+ .debug_line    0x000007b7      0x3f1 ..\obj\stm32_ub_i2c3.o
+ .debug_line    0x00000ba8      0x508 ..\obj\stm32f4xx_ltdc.o
+ .debug_line    0x000010b0       0xac ..\obj\startup_stm32f4xx.o
+ .debug_line    0x0000115c      0x43a ..\obj\main.o
+ .debug_line    0x00001596      0x647 ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x00001bdd      0x506 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_line    0x000020e3      0x34a ..\obj\stm32f4xx_gpio.o
+ .debug_line    0x0000242d      0x2c8 ..\obj\stm32_ub_font.o
+ .debug_line    0x000026f5      0x241 ..\obj\system_stm32f4xx.o
+ .debug_line    0x00002936      0x1b3 ..\obj\syscalls.o
+ .debug_line    0x00002ae9      0x2d1 ..\obj\stm32_ub_spi5.o
+ .debug_line    0x00002dba      0x574 ..\obj\stm32f4xx_fmc.o
+ .debug_line    0x0000332e      0x1a2 ..\obj\ub_font_arial_11x18.o
+ .debug_line    0x000034d0      0x460 ..\obj\stm32f4xx_spi.o
+ .debug_line    0x00003930      0x50b ..\obj\stm32f4xx_i2c.o
+ .debug_line    0x00003e3b      0x356 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_loc      0x00000000     0x3c72
+ .debug_loc     0x00000000      0x2da ..\obj\stm32_ub_sdram.o
+ .debug_loc     0x000002da      0x404 ..\obj\stm32f4xx_dma2d.o
+ .debug_loc     0x000006de      0x150 ..\obj\stm32_ub_i2c3.o
+ .debug_loc     0x0000082e      0x684 ..\obj\stm32f4xx_ltdc.o
+ .debug_loc     0x00000eb2       0x64 ..\obj\startup_stm32f4xx.o
+ .debug_loc     0x00000f16      0x1fc ..\obj\main.o
+ .debug_loc     0x00001112      0xb3c ..\obj\stm32f4xx_rcc.o
+ .debug_loc     0x00001c4e      0x428 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_loc     0x00002076      0x310 ..\obj\stm32f4xx_gpio.o
+ .debug_loc     0x00002386       0xe0 ..\obj\stm32_ub_font.o
+ .debug_loc     0x00002466       0x9c ..\obj\system_stm32f4xx.o
+ .debug_loc     0x00002502      0x1ec ..\obj\syscalls.o
+ .debug_loc     0x000026ee       0x70 ..\obj\stm32_ub_spi5.o
+ .debug_loc     0x0000275e      0x5dc ..\obj\stm32f4xx_fmc.o
+ .debug_loc     0x00002d3a      0x578 ..\obj\stm32f4xx_spi.o
+ .debug_loc     0x000032b2      0x7a8 ..\obj\stm32f4xx_i2c.o
+ .debug_loc     0x00003a5a      0x218 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_pubnames
+                0x00000000     0x1909
+ .debug_pubnames
+                0x00000000      0x11a ..\obj\stm32_ub_sdram.o
+ .debug_pubnames
+                0x0000011a      0x1ab ..\obj\stm32f4xx_dma2d.o
+ .debug_pubnames
+                0x000002c5       0x92 ..\obj\stm32_ub_i2c3.o
+ .debug_pubnames
+                0x00000357      0x288 ..\obj\stm32f4xx_ltdc.o
+ .debug_pubnames
+                0x000005df       0x4a ..\obj\startup_stm32f4xx.o
+ .debug_pubnames
+                0x00000629       0xfa ..\obj\main.o
+ .debug_pubnames
+                0x00000723      0x4e2 ..\obj\stm32f4xx_rcc.o
+ .debug_pubnames
+                0x00000c05      0x1d5 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_pubnames
+                0x00000dda      0x12d ..\obj\stm32f4xx_gpio.o
+ .debug_pubnames
+                0x00000f07       0x83 ..\obj\stm32_ub_font.o
+ .debug_pubnames
+                0x00000f8a       0x61 ..\obj\system_stm32f4xx.o
+ .debug_pubnames
+                0x00000feb       0x71 ..\obj\syscalls.o
+ .debug_pubnames
+                0x0000105c       0x44 ..\obj\stm32_ub_spi5.o
+ .debug_pubnames
+                0x000010a0      0x254 ..\obj\stm32f4xx_fmc.o
+ .debug_pubnames
+                0x000012f4       0x38 ..\obj\ub_font_arial_11x18.o
+ .debug_pubnames
+                0x0000132c      0x221 ..\obj\stm32f4xx_spi.o
+ .debug_pubnames
+                0x0000154d      0x2ff ..\obj\stm32f4xx_i2c.o
+ .debug_pubnames
+                0x0000184c       0xbd ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_pubtypes
+                0x00000000      0xe63
+ .debug_pubtypes
+                0x00000000      0x124 ..\obj\stm32_ub_sdram.o
+ .debug_pubtypes
+                0x00000124       0xb5 ..\obj\stm32f4xx_dma2d.o
+ .debug_pubtypes
+                0x000001d9      0x10e ..\obj\stm32_ub_i2c3.o
+ .debug_pubtypes
+                0x000002e7      0x12f ..\obj\stm32f4xx_ltdc.o
+ .debug_pubtypes
+                0x00000416       0xa7 ..\obj\main.o
+ .debug_pubtypes
+                0x000004bd       0xaa ..\obj\stm32f4xx_rcc.o
+ .debug_pubtypes
+                0x00000567      0x134 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_pubtypes
+                0x0000069b       0xce ..\obj\stm32f4xx_gpio.o
+ .debug_pubtypes
+                0x00000769       0x8b ..\obj\stm32_ub_font.o
+ .debug_pubtypes
+                0x000007f4       0x83 ..\obj\system_stm32f4xx.o
+ .debug_pubtypes
+                0x00000877       0xaa ..\obj\syscalls.o
+ .debug_pubtypes
+                0x00000921      0x122 ..\obj\stm32_ub_spi5.o
+ .debug_pubtypes
+                0x00000a43      0x1c9 ..\obj\stm32f4xx_fmc.o
+ .debug_pubtypes
+                0x00000c0c       0x45 ..\obj\ub_font_arial_11x18.o
+ .debug_pubtypes
+                0x00000c51       0xbc ..\obj\stm32f4xx_spi.o
+ .debug_pubtypes
+                0x00000d0d       0xbe ..\obj\stm32f4xx_i2c.o
+ .debug_pubtypes
+                0x00000dcb       0x98 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_aranges  0x00000000      0xa58
+ .debug_aranges
+                0x00000000       0x80 ..\obj\stm32_ub_sdram.o
+ .debug_aranges
+                0x00000080       0xb0 ..\obj\stm32f4xx_dma2d.o
+ .debug_aranges
+                0x00000130       0x48 ..\obj\stm32_ub_i2c3.o
+ .debug_aranges
+                0x00000178      0x108 ..\obj\stm32f4xx_ltdc.o
+ .debug_aranges
+                0x00000280       0x28 ..\obj\startup_stm32f4xx.o
+ .debug_aranges
+                0x000002a8       0x60 ..\obj\main.o
+ .debug_aranges
+                0x00000308      0x1b8 ..\obj\stm32f4xx_rcc.o
+ .debug_aranges
+                0x000004c0       0xb8 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_aranges
+                0x00000578       0x88 ..\obj\stm32f4xx_gpio.o
+ .debug_aranges
+                0x00000600       0x38 ..\obj\stm32_ub_font.o
+ .debug_aranges
+                0x00000638       0x30 ..\obj\system_stm32f4xx.o
+ .debug_aranges
+                0x00000668       0x60 ..\obj\syscalls.o
+ .debug_aranges
+                0x000006c8       0x28 ..\obj\stm32_ub_spi5.o
+ .debug_aranges
+                0x000006f0       0xf0 ..\obj\stm32f4xx_fmc.o
+ .debug_aranges
+                0x000007e0       0xe0 ..\obj\stm32f4xx_spi.o
+ .debug_aranges
+                0x000008c0      0x130 ..\obj\stm32f4xx_i2c.o
+ .debug_aranges
+                0x000009f0       0x68 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_ranges   0x00000000      0x948
+ .debug_ranges  0x00000000       0x70 ..\obj\stm32_ub_sdram.o
+ .debug_ranges  0x00000070       0xa0 ..\obj\stm32f4xx_dma2d.o
+ .debug_ranges  0x00000110       0x38 ..\obj\stm32_ub_i2c3.o
+ .debug_ranges  0x00000148       0xf8 ..\obj\stm32f4xx_ltdc.o
+ .debug_ranges  0x00000240       0x18 ..\obj\startup_stm32f4xx.o
+ .debug_ranges  0x00000258       0x50 ..\obj\main.o
+ .debug_ranges  0x000002a8      0x1a8 ..\obj\stm32f4xx_rcc.o
+ .debug_ranges  0x00000450       0xa8 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_ranges  0x000004f8       0x78 ..\obj\stm32f4xx_gpio.o
+ .debug_ranges  0x00000570       0x28 ..\obj\stm32_ub_font.o
+ .debug_ranges  0x00000598       0x20 ..\obj\system_stm32f4xx.o
+ .debug_ranges  0x000005b8       0x50 ..\obj\syscalls.o
+ .debug_ranges  0x00000608       0x18 ..\obj\stm32_ub_spi5.o
+ .debug_ranges  0x00000620       0xe0 ..\obj\stm32f4xx_fmc.o
+ .debug_ranges  0x00000700       0xd0 ..\obj\stm32f4xx_spi.o
+ .debug_ranges  0x000007d0      0x120 ..\obj\stm32f4xx_i2c.o
+ .debug_ranges  0x000008f0       0x58 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_str      0x00000000     0x3804
+ .debug_str     0x00000000      0x608 ..\obj\stm32_ub_sdram.o
+                                0x64f (size before relaxing)
+ .debug_str     0x00000608      0x5c5 ..\obj\stm32f4xx_dma2d.o
+                                0x6b3 (size before relaxing)
+ .debug_str     0x00000bcd      0x1d7 ..\obj\stm32_ub_i2c3.o
+                                0x46a (size before relaxing)
+ .debug_str     0x00000da4      0x821 ..\obj\stm32f4xx_ltdc.o
+                                0x990 (size before relaxing)
+ .debug_str     0x000015c5       0xbb ..\obj\startup_stm32f4xx.o
+                                 0xe6 (size before relaxing)
+ .debug_str     0x00001680      0x1dc ..\obj\main.o
+                                0x3ad (size before relaxing)
+ .debug_str     0x0000185c      0x77a ..\obj\stm32f4xx_rcc.o
+                                0x905 (size before relaxing)
+ .debug_str     0x00001fd6      0x28d ..\obj\stm32_ub_lcd_ili9341.o
+                                0x897 (size before relaxing)
+ .debug_str     0x00002263      0x17d ..\obj\stm32f4xx_gpio.o
+                                0x40b (size before relaxing)
+ .debug_str     0x000023e0       0xc3 ..\obj\stm32_ub_font.o
+                                0x1e6 (size before relaxing)
+ .debug_str     0x000024a3      0x12a ..\obj\system_stm32f4xx.o
+                                0x32c (size before relaxing)
+ .debug_str     0x000025cd      0x1b5 ..\obj\syscalls.o
+                                0x271 (size before relaxing)
+ .debug_str     0x00002782      0x161 ..\obj\stm32_ub_spi5.o
+                                0x4e8 (size before relaxing)
+ .debug_str     0x000028e3      0x6e8 ..\obj\stm32f4xx_fmc.o
+                                0x9e8 (size before relaxing)
+ .debug_str     0x00002fcb       0x67 ..\obj\ub_font_arial_11x18.o
+                                0x146 (size before relaxing)
+ .debug_str     0x00003032      0x315 ..\obj\stm32f4xx_spi.o
+                                0x605 (size before relaxing)
+ .debug_str     0x00003347      0x390 ..\obj\stm32f4xx_i2c.o
+                                0x61a (size before relaxing)
+ .debug_str     0x000036d7      0x12d ..\obj\stm32_ub_touch_stmpe811.o
+                                0x291 (size before relaxing)
+
+.comment        0x00000000       0x2a
+ .comment       0x00000000       0x2a ..\obj\stm32_ub_sdram.o
+                                 0x2b (size before relaxing)
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_dma2d.o
+ .comment       0x00000000       0x2b ..\obj\stm32_ub_i2c3.o
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_ltdc.o
+ .comment       0x00000000       0x2b ..\obj\startup_stm32f4xx.o
+ .comment       0x00000000       0x2b ..\obj\main.o
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_rcc.o
+ .comment       0x00000000       0x2b ..\obj\stm32_ub_lcd_ili9341.o
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_gpio.o
+ .comment       0x00000000       0x2b ..\obj\stm32_ub_font.o
+ .comment       0x00000000       0x2b ..\obj\system_stm32f4xx.o
+ .comment       0x00000000       0x2b ..\obj\syscalls.o
+ .comment       0x00000000       0x2b ..\obj\stm32_ub_spi5.o
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_fmc.o
+ .comment       0x00000000       0x2b ..\obj\ub_font_arial_11x18.o
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_spi.o
+ .comment       0x00000000       0x2b ..\obj\stm32f4xx_i2c.o
+ .comment       0x00000000       0x2b ..\obj\stm32_ub_touch_stmpe811.o
+
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x31 ..\obj\stm32_ub_sdram.o
+ .ARM.attributes
+                0x00000031       0x31 ..\obj\stm32f4xx_dma2d.o
+ .ARM.attributes
+                0x00000062       0x31 ..\obj\stm32_ub_i2c3.o
+ .ARM.attributes
+                0x00000093       0x31 ..\obj\stm32f4xx_ltdc.o
+ .ARM.attributes
+                0x000000c4       0x31 ..\obj\startup_stm32f4xx.o
+ .ARM.attributes
+                0x000000f5       0x31 ..\obj\main.o
+ .ARM.attributes
+                0x00000126       0x31 ..\obj\stm32f4xx_rcc.o
+ .ARM.attributes
+                0x00000157       0x31 ..\obj\stm32_ub_lcd_ili9341.o
+ .ARM.attributes
+                0x00000188       0x31 ..\obj\stm32f4xx_gpio.o
+ .ARM.attributes
+                0x000001b9       0x31 ..\obj\stm32_ub_font.o
+ .ARM.attributes
+                0x000001ea       0x31 ..\obj\system_stm32f4xx.o
+ .ARM.attributes
+                0x0000021b       0x31 ..\obj\syscalls.o
+ .ARM.attributes
+                0x0000024c       0x31 ..\obj\stm32_ub_spi5.o
+ .ARM.attributes
+                0x0000027d       0x31 ..\obj\stm32f4xx_fmc.o
+ .ARM.attributes
+                0x000002ae       0x31 ..\obj\ub_font_arial_11x18.o
+ .ARM.attributes
+                0x000002df       0x31 ..\obj\stm32f4xx_spi.o
+ .ARM.attributes
+                0x00000310       0x31 ..\obj\stm32f4xx_i2c.o
+ .ARM.attributes
+                0x00000341       0x31 ..\obj\stm32_ub_touch_stmpe811.o
+
+.debug_frame    0x00000000     0x2048
+ .debug_frame   0x00000000      0x194 ..\obj\stm32_ub_sdram.o
+ .debug_frame   0x00000194      0x21c ..\obj\stm32f4xx_dma2d.o
+ .debug_frame   0x000003b0       0xcc ..\obj\stm32_ub_i2c3.o
+ .debug_frame   0x0000047c      0x35c ..\obj\stm32f4xx_ltdc.o
+ .debug_frame   0x000007d8       0x48 ..\obj\startup_stm32f4xx.o
+ .debug_frame   0x00000820      0x12c ..\obj\main.o
+ .debug_frame   0x0000094c      0x5b8 ..\obj\stm32f4xx_rcc.o
+ .debug_frame   0x00000f04      0x258 ..\obj\stm32_ub_lcd_ili9341.o
+ .debug_frame   0x0000115c      0x19c ..\obj\stm32f4xx_gpio.o
+ .debug_frame   0x000012f8       0x90 ..\obj\stm32_ub_font.o
+ .debug_frame   0x00001388       0x64 ..\obj\system_stm32f4xx.o
+ .debug_frame   0x000013ec      0x108 ..\obj\syscalls.o
+ .debug_frame   0x000014f4       0x50 ..\obj\stm32_ub_spi5.o
+ .debug_frame   0x00001544      0x300 ..\obj\stm32f4xx_fmc.o
+ .debug_frame   0x00001844      0x2d0 ..\obj\stm32f4xx_spi.o
+ .debug_frame   0x00001b14      0x3ec ..\obj\stm32f4xx_i2c.o
+ .debug_frame   0x00001f00      0x148 ..\obj\stm32_ub_touch_stmpe811.o
