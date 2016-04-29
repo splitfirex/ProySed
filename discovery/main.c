@@ -22,8 +22,8 @@
 #include "stm32_ub_font.h"
 #include "stm32_ub_touch_stmpe811.h"
 #include "stm32f4xx_dma2d.h"
-
-
+#include <stdio.h>
+#include "stm32f4xx.h"
 //--------------------------------------------------------------
 void P_drawScreen(void);
 void P_drawClear(void);
@@ -37,6 +37,82 @@ void LCD_DrawCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius, uint16_t colo
 uint32_t CurrentFrameBuffer;
 uint16_t aktColor;
 
+
+
+volatile uint32_t msTicks; /* counts 1ms timeTicks       */
+void SysTick_Handler(void) {
+	msTicks++;
+}
+
+//  Delays number of Systicks (happens every 1 ms)
+static void Delay(__IO uint32_t dlyTicks){
+  uint32_t curTicks = msTicks;
+  while ((msTicks - curTicks) < dlyTicks);
+}
+
+void setSysTick(){
+	// ---------- SysTick timer (1ms) -------- //
+	if (SysTick_Config(SystemCoreClock / 1000)) {
+		// Capture error
+		while (1){};
+	}
+}
+
+void setup_Periph(){
+	GPIO_InitTypeDef GPIO_InitStructure;
+	USART_InitTypeDef USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+
+	// Enable the APB1 periph clock for USART2
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+	// Enable the GPIOA clock, used by pins PA2, PA3
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+
+	// Setup the GPIO pins for Tx and Rx
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+	// Connect PA2 and PA3 with the USART2 Alternate Function
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+
+	USART_InitStructure.USART_BaudRate = 9600;
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;
+	USART_InitStructure.USART_Parity = USART_Parity_No;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
+	USART_Init(USART2, &USART_InitStructure);
+
+	/* Enable the USART2 receive interrupt and configure
+		the interrupt controller to jump to USART2_IRQHandler()
+		if the USART2 receive interrupt occurs
+	*/
+	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+
+	NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+
+	// Finally enable the USART2 peripheral
+	USART_Cmd(USART2, ENABLE);
+}
+
+void USART_puts(USART_TypeDef *USARTx, volatile char *str){
+	while(*str){
+		// Wait for the TC (Transmission Complete) Flag to be set
+		// while(!(USARTx->SR & 0x040));
+		while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
+		USART_SendData(USARTx, *str);
+		*str++;
+	}
+}
 //--------------------------------------------------------------
 int main(void)
 {
@@ -60,26 +136,34 @@ int main(void)
   CurrentFrameBuffer=LCD_FRAME_BUFFER + LCD_FRAME_OFFSET;
   aktColor=LCD_COLOR_RED;
 
+  setSysTick();
+  setup_Periph(); // initialize USART1 @ 9600 baud
+
+  USART_puts(USART2, "inicializado la discovery \r\n");
+
   // init und Check vom Touch
   if(UB_Touch_Init()!=SUCCESS) {
     UB_Font_DrawString(10,10,"Touch Error",&Arial_11x18,RGB_COL_WHITE,RGB_COL_RED);
-    //while(1);
+    while(1);
   }
 
-  char valores[10] = "7894561230";
+  char valores[12] = "7894561230EC";
   int i=0;
   int j=0;
   int contador = 0;
   for(i=0 ; i < 3 ; i++){
 	  for(j =0; j <3 ; j++){
-		  P_dibujar_cuadro(0+(j*80), 0+(i*80), 80, valores[contador++] );
+		  P_dibujar_cuadro((j*80), (i*80), 80, valores[contador++] );
 	  }
   }
-  P_dibujar_cuadro(0+(1*80), 0+(3*80), 80, valores[contador++] );
+  P_dibujar_cuadro((1*80),(3*80), 80, valores[contador++] );
+  P_dibujar_cuadro((0*80),(3*80), 80, valores[contador++] );
+  P_dibujar_cuadro((2*80),(3*80), 80, valores[contador++] );
   //P_drawScreen();
   //LCD_DrawFullRect(0, 0, 240, 248, LCD_COLOR_BLUE2);
 
-
+  char valoresSalida[6] = "    \r\n";
+  int contadorPresion =0;
   while(1)
   {
     // Touch auslesen
@@ -87,60 +171,74 @@ int main(void)
     if(Touch_Data.status==TOUCH_PRESSED) {
     	xp=Touch_Data.xp;
     	yp=Touch_Data.yp;
-    	if((yp < 245) && (yp >= 3)) {
-    		if((xp < 237) && (xp > 3)) {
-    			LCD_DrawFullCircle(xp, yp, 3, aktColor);
-    		}
-    	}
-        else if ((yp <= 280) && (yp >= 250) && (xp >= 5) && (xp <= 35))
+
+    	if(contadorPresion>4){
+    	    		contadorPresion =0;
+    	    	}
+
+    	if ((yp <= 80) && (yp >= 0) && (xp >= 0) && (xp <= 80))
         {
-        	aktColor=LCD_COLOR_BLUE2;
-        	P_drawClear();
+    		USART_puts(USART2, "7\r\n");
+        	valoresSalida[contadorPresion++]= '7';
         }
-        else if ((yp <= 280) && (yp >= 250) && (xp >= 40) && (xp <= 70))
+    	else if ((yp <= 80) && (yp >= 0) && (xp >= 81) && (xp <= 160))
         {
-        	aktColor=LCD_COLOR_CYAN;
-        	P_drawClear();
+    		USART_puts(USART2, "8\r\n");
+    		valoresSalida[contadorPresion++]= '8';
         }
-        else if ((yp <= 280) && (yp >= 250) && (xp >= 75) && (xp <= 105))
+    	else if ((yp <= 80) && (yp >= 0) && (xp >= 161) && (xp <= 240))
         {
-        	aktColor=LCD_COLOR_YELLOW;
-        	P_drawClear();
+    		USART_puts(USART2, "9\r\n");
+    		valoresSalida[contadorPresion++]= '9';
         }
-        else if ((yp <= 280) && (yp >= 250) && (xp >= 110) && (xp <= 140))
+        else if ((yp <= 160) && (yp >= 81) && (xp >= 0) && (xp <= 80))
         {
-        	aktColor=LCD_COLOR_WHITE;
-        	P_drawClear();
+        	USART_puts(USART2, "4\r\n");
+        	valoresSalida[contadorPresion++]= '4';
         }
-        else if ((yp <= 318) && (yp >= 288) && (xp >= 5) && (xp <= 35))
+        else if ((yp <= 160) && (yp >= 81) && (xp >= 81) && (xp <= 160))
+		{
+        	USART_puts(USART2, "5\r\n");
+        	valoresSalida[contadorPresion++]= '5';
+		}
+        else if ((yp <= 160) && (yp >= 81) && (xp >= 161) && (xp <= 240))
+		{
+        	USART_puts(USART2, "6\r\n");
+        	valoresSalida[contadorPresion++]= '6';
+		}
+        else if ((yp <= 240) && (yp >= 161) && (xp >= 0) && (xp <= 80))
         {
-        	aktColor=LCD_COLOR_RED;
-        	P_drawClear();
+        	USART_puts(USART2, "1\r\n");
+        	valoresSalida[contadorPresion++]= '1';
         }
-        else if ((yp <= 318) && (yp >= 288) && (xp >= 40) && (xp <= 70))
+        else if ((yp <= 240) && (yp >= 161) && (xp >= 81) && (xp <= 160))
         {
-        	aktColor=LCD_COLOR_BLUE;
-        	P_drawClear();
+        	USART_puts(USART2, "2\r\n");
+        	valoresSalida[contadorPresion++]= '2';
         }
-        else if ((yp <= 318) && (yp >= 288) && (xp >= 75) && (xp <= 105))
+        else if ((yp <= 240) && (yp >= 161) && (xp >= 161) && (xp <= 240))
         {
-        	aktColor=LCD_COLOR_GREEN;
-        	P_drawClear();
+        	USART_puts(USART2, "3\r\n");
+        	valoresSalida[contadorPresion++]= '3';
         }
-        else if ((yp <= 318) && (yp >= 288) && (xp >= 110) && (xp <= 140))
-        {
-        	aktColor=LCD_COLOR_BLACK;
-        	P_drawClear();
-        }
-        else if ((yp <= 318) && (yp >= 288) && (xp >= 145) && (xp <= 175))
-        {
-        	aktColor=LCD_COLOR_MAGENTA;
-        	P_drawClear();
-        }
-        else if ((yp <= 318) && (yp >= 270) && (xp >= 180) && (xp <= 230))
-        {
-        	LCD_DrawFullRect(0, 0, 240, 248, aktColor);
-        }
+        else if ((yp <= 320) && (yp >= 241) && (xp >= 0) && (xp <= 80))
+		{
+        	USART_puts(USART2, "E\r\n");
+			USART_puts(USART2, valoresSalida);
+			contadorPresion =0;
+		}
+		else if ((yp <= 320) && (yp >= 241) && (xp >= 81) && (xp <= 160))
+		{
+			USART_puts(USART2, "0\r\n");
+			valoresSalida[contadorPresion++]= '0';
+		}
+		else if ((yp <= 320) && (yp >= 241) && (xp >= 161) && (xp <= 240))
+		{
+			USART_puts(USART2, "C\r\n");
+			contadorPresion = 0;
+		}
+
+    	Delay(500);
 
     }
   }
