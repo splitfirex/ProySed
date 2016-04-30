@@ -47,7 +47,7 @@ class alarmaMonitor (threading.Thread):
 			fechaImagen = datetime.datetime.now().strftime("%Y-%b-%d-%I-%M-%S%p")
 			print "{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)
 			cv2.imwrite("{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder),frame)
-			comunicacion.notificaI2C([ord('R'),ord('3'),ord('T')])
+			comunicacion.notificaI2C("R3T")
 			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=camara&nombre={0}&fecha={1}&imagen={2}".format(mov,fechaImagen,"{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)))
 			self.ea = estadoAlarma.Sonando
 			comunicacion.notificaHTTP("/api?action=cambiarestado&estado=Sonando")
@@ -55,7 +55,7 @@ class alarmaMonitor (threading.Thread):
 		if self.ea is estadoAlarma.Activa and frame is None:
 			self.movimiento = True
 			self.alarma = mov
-			comunicacion.notificaI2C([ord('R'),ord('3'),ord('T')])
+			comunicacion.notificaI2C("R3T")
 			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=Infrarojo&nombre={0}&fecha={1}&imagen=None".format(mov,fechaImagen))
 			self.ea = estadoAlarma.Sonando
 			comunicacion.notificaHTTP("/api?action=cambiarestado&estado=Sonando")
@@ -90,29 +90,24 @@ class alarmaMonitor (threading.Thread):
 		comunicacion.notificaHTTP("/api?action=cambiarestado&estado="+webdata)
 
 	def ingresaContrasena(self,char):
-		self.contadorPass += 1
-		if self.contadorPass is 4:
-			self.contadorPass = 0
-			webdata = comunicacion.consultaHTTP("consultar/password");
-			if webdata is self.password:
-				if self.ea is estadoAlarma.Inactiva:
-					self.ea = estadoAlarma.Preactiva
-					comunicacion.notificaI2C([ord('R'),ord('1'),ord('T')])
-					self.notificaEstadoWeb()
-				if self.ea is estadoAlarma.Activa or self.ea is estadoAlarma.Sonando:
-					self.ea = estadoAlarma.Inactiva
-					comunicacion.notificaI2C([ord('R'),ord('0'),ord('T')])
-					self.notificaEstadoWeb()
-			self.password = ""
-		self.password += char
-
+		self.password = char.split("D")[1].split("T")[0]
+		webdata = comunicacion.consultaHTTP("consultar/password");
+		if webdata is self.password:
+			if self.ea is estadoAlarma.Inactiva:
+				self.ea = estadoAlarma.Preactiva
+				comunicacion.notificaI2C("R1T")
+				self.notificaEstadoWeb()
+			if self.ea is estadoAlarma.Activa or self.ea is estadoAlarma.Sonando:
+				self.ea = estadoAlarma.Inactiva
+				comunicacion.notificaI2C("R0T")
+				self.notificaEstadoWeb()
 
 	# Solo esperamos los mensajes de la discovery para validar que la contrasena es correcta
 	def estadoInactivo(self):
 		data = comunicacion.consultaI2C()
 		if data[0] is '1':
 			if data[1] is 'D':
-				self.ingresaContrasena(data[2])
+				self.ingresaContrasena(data)
 	
 	# Se esperan 15 segundos y luego cambiamos el estado a activa (Notificar el I2C ?).
 	def estadoPreactiva(self):
@@ -126,7 +121,7 @@ class alarmaMonitor (threading.Thread):
 		data = comunicacion.consultaI2C()
 		if data[0] is '1':
 			if data[1] is 'D':
-				self.ingresaContrasena(data[2])
+				self.ingresaContrasena(data)
 			if data[1] is 'A':
 				self.setMovimiento("Sensor IR",None)
 	
@@ -135,12 +130,11 @@ class alarmaMonitor (threading.Thread):
 		data = comunicacion.consultaI2C()
 		if data[0] is '1':
 			if data[1] is 'D':
-				self.ingresaContrasena(data[2])
+				self.ingresaContrasena(data)
 
 	def run(self):
 		while True:
 			if self.matar is True:
-				#self.comm.matar = True
 				break
 			# Obtenemos el estado de la web para validar si hay que realizar un cambio previamente
 			self.consultaEstadoWeb()

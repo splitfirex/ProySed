@@ -11,12 +11,15 @@ int zumbadorpin = 10;
 int movimientoDetectado = 0;
 String data = "";
 // char data[4];
-String caracter = " ";
+String caracter = "";
 int estadoAlarma = 2;
 int contadorPreActivacion = 0;
 int valorSensor1 = 0;
 int valorSensor2 = 0;
 int pirState = LOW;
+// variables comunicacion discovery
+String inputString = "";         // a string to hold incoming data
+boolean stringComplete = false;  // whether the string is complete
 
 void setup(){
 
@@ -26,12 +29,26 @@ void setup(){
   pinMode(sensorledPin, OUTPUT);    
   pinMode(zumbadorpin, OUTPUT);
 
-  // Establecemos la comunicacion del I2C
+  // Establecemos la comunicacion UART con stm32
   Serial.begin(9600);
+  inputString.reserve(200); 
+    
+  // Establecemos la comunicacion I2C con la RASP
   Wire.begin(SLAVE_ADDRESS);
   Wire.onReceive(receiveData);
   Wire.onRequest(sendData);
 
+}
+
+// Lectura de eventos de UART
+void serialEvent() {
+  while (Serial.available()) {
+    char inChar = (char)Serial.read();
+    inputString += inChar;
+    if (inChar == 'T') {
+      stringComplete = true;
+    }
+  }
 }
 
 void loop(){
@@ -55,6 +72,31 @@ void loop(){
   }
 }
 
+// Ejecuta el sonido de la alarma
+void playTone(long duration, int freq) {
+    duration *= 1000;
+    int period = (1.0 / freq) * 1000000;
+    long elapsed_time = 0;
+    while (elapsed_time < duration) {
+        digitalWrite(zumbadorpin,HIGH);
+        delayMicroseconds(period / 2);
+        digitalWrite(zumbadorpin, LOW);
+        delayMicroseconds(period / 2);
+        elapsed_time += (period);
+    }
+}
+
+// Solo suena y prende los led correspondientes
+void estadoSonando(){
+
+  digitalWrite(sensorledPin, HIGH); // turn LED OFF
+  playTone(300, 160);
+  delay(500);
+  digitalWrite(sensorledPin, LOW);
+  delay(500);
+
+}
+
 // Se cuenta hasta 15 segundos y luego se activa la alarma 
 void estadoPreActivo(){
 
@@ -65,6 +107,7 @@ void estadoPreActivo(){
   contadorPreActivacion++;
   if(contadorPreActivacion > 15){
     estadoAlarma = 2;  // activamos la alarma
+    Serial.print("nuevo estado: Preactivo ");
   }
 
 }
@@ -79,7 +122,7 @@ void estadoActivo(){
   if (valorSensor1 | valorSensor2 == HIGH) {  
     delay(150);
     if (pirState == LOW) {
-      notificarMovimiento();
+      movimientoDetectado = 1;
       pirState = HIGH;
     }
 
@@ -92,30 +135,6 @@ void estadoActivo(){
 
 }
 
-// duration in mSecs, frequency in hertz
-void playTone(long duration, int freq) {
-    duration *= 1000;
-    int period = (1.0 / freq) * 1000000;
-    long elapsed_time = 0;
-    while (elapsed_time < duration) {
-        digitalWrite(zumbadorpin,HIGH);
-        delayMicroseconds(period / 2);
-        digitalWrite(zumbadorpin, LOW);
-        delayMicroseconds(period / 2);
-        elapsed_time += (period);
-    }
-}
-
-void estadoSonando(){
-
-  digitalWrite(sensorledPin, HIGH); // turn LED OFF
-  playTone(300, 160);
-  delay(500);
-  digitalWrite(sensorledPin, LOW);
-  delay(500);
-
-}
-
 // callback para la recepcion de la data
 void receiveData(int byteCount){
 
@@ -123,92 +142,65 @@ void receiveData(int byteCount){
   while(Wire.available()) {
     caracter += (char)Wire.read();
   }
-
-  Serial.print("data recibida: ");
-  Serial.println(data);
-   if(caracter.charAt(0) != 'T'){ // Si el componente es Discovery reenviamos a la RASP
-    data += caracter;
-    return;
-  }
-
-  
-  char componente   = data.charAt(0);
-  char valorMensaje = data.charAt(1);
-  
-  //int index = 0;
-  //while(Wire.available()) {
-  //data[index] += (char)Wire.read();
-  //  if(index >=4){ break; }
-  //}
-  
-  //int componente = data[0];
-  //int valorMensaje = data[1];
-  
-  Serial.print("componente: ");
-  Serial.println(componente);
+  Serial.print("mensaje: ");
+  Serial.println(caracter);
+  char valorMensaje = caracter.charAt(2);
   Serial.print("valorMensaje: ");
   Serial.println(valorMensaje);
-  
-
-  if(componente == 'D'){ // Si el componente es Discovery reenviamos a la RASP
-    sendData();
-    return;
-  }
+ 
 
   switch(estadoAlarma){
     case 0 :
       if(valorMensaje == '1'){
         estadoAlarma = 1;
         contadorPreActivacion = 0; // reinicializamos el contador de repeticiones
+        Serial.print("nuevo estado: Preactivo ");
       }
       break;
     case 1 :
       if(valorMensaje == '2'){
         estadoAlarma = 2;
+        Serial.print("nuevo estado: activo ");
       }
       break;
     case 2 :
       if(valorMensaje == '3'){
         estadoAlarma = 3;
+        Serial.print("nuevo estado: sonando ");
       }
       if(valorMensaje == '0'){
         estadoAlarma = 0;
+        Serial.print("nuevo estado: inactivo ");
       }
       break;
     case 3 :
       if(valorMensaje == '0'){
         estadoAlarma = 0;
+        Serial.print("nuevo estado: inactivo ");
       }
       break;
     default:
-      estadoAlarma = 0;
       break;
   }
-    data = "";
 
 }
 
-// metodo para notificar movimiento
-void notificarMovimiento(){
-  movimientoDetectado = 1;
-  Serial.println("Movimiento detectado");
-}
 
-// callback for sending data
-char* palabra = "A1T";
-int index = 0;
 void sendData(){
   
-  if(movimientoDetectado == 1){
-    Wire.write(palabra[index]);
-    //Wire.write(palabra,3);
-    ++index;
-    if (index>=4){
-      index=0;
-       movimientoDetectado = 0;
-      }
-   
+  if(stringComplete){
+    char respuesta[32] = "000T";
+    inputString.toCharArray(respuesta,32);
+    Wire.write(respuesta);
+    inputString = "";
+    stringComplete = false;   
   }
- //Serial.println(data);
-
+  else if(movimientoDetectado == 1){
+    Wire.write("1A1T");   
+    movimientoDetectado =0;
+  }
+  else{
+    Wire.write("000T");    
+  }
+  
 }

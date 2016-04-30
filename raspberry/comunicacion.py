@@ -5,22 +5,15 @@ import requests
 class comunicacion:
 	url = "http://localhost:8888"
 	bus = '1'
-	address = 1234
+	address = 0x04
 	params = {"verbose": False}
 
 	@classmethod
 	def consultaI2C(cls):
-		data = [0,'D',0,0]
+		data = "000T"
 		try:
-			caracter = ''
-			while caracter is not ord('T'):
-				caracter = cls.bus.read_byte(cls.address)
-				time.sleep(1)
-				if caracter is 0:
-					continue
-				data    +=str(chr(caracter))
-				print "el caracter es ", chr(caracter)
-			print "la data es ", data
+			caracteres = cls.bus.read_i2c_block_data(cls.address,0)
+			return str(bytearray(caracteres))
 		except:
 			pass
 		return data
@@ -29,7 +22,7 @@ class comunicacion:
 	def notificaI2C(cls,notificacion):
 		print "notificamos a la arduino :", notificacion
 		try:
-			cls.bus.write_i2c_block_data(cls.address,0,notificacion)
+			cls.bus.write_i2c_block_data(cls.address,0x31, [ord(c) for c in notificacion])
 		except:
 			pass
 			
