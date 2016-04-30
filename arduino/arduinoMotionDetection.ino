@@ -12,7 +12,7 @@ int movimientoDetectado = 0;
 String data = "";
 // char data[4];
 String caracter = "";
-int estadoAlarma = 2;
+int estadoAlarma = 0;
 int contadorPreActivacion = 0;
 int valorSensor1 = 0;
 int valorSensor2 = 0;
@@ -91,9 +91,9 @@ void estadoSonando(){
 
   digitalWrite(sensorledPin, HIGH); // turn LED OFF
   playTone(300, 160);
-  delay(500);
+  delay(100);
   digitalWrite(sensorledPin, LOW);
-  delay(500);
+  delay(100);
 
 }
 
@@ -104,11 +104,6 @@ void estadoPreActivo(){
   delay(500);
   digitalWrite(sensorledPin, LOW);
   delay(500);
-  contadorPreActivacion++;
-  if(contadorPreActivacion > 15){
-    estadoAlarma = 2;  // activamos la alarma
-    Serial.print("nuevo estado: Preactivo ");
-  }
 
 }
 
@@ -142,45 +137,26 @@ void receiveData(int byteCount){
   while(Wire.available()) {
     caracter += (char)Wire.read();
   }
-  Serial.print("mensaje: ");
-  Serial.println(caracter);
+  
+  if(caracter.charAt(1) != 'R'){
+    return;
+  }
+  Serial.println("mensaje: "+ caracter);  
   char valorMensaje = caracter.charAt(2);
-  Serial.print("valorMensaje: ");
-  Serial.println(valorMensaje);
- 
+  Serial.println("valorMensaje: "+ valorMensaje);  
 
-  switch(estadoAlarma){
-    case 0 :
-      if(valorMensaje == '1'){
-        estadoAlarma = 1;
-        contadorPreActivacion = 0; // reinicializamos el contador de repeticiones
-        Serial.print("nuevo estado: Preactivo ");
-      }
-      break;
-    case 1 :
-      if(valorMensaje == '2'){
-        estadoAlarma = 2;
-        Serial.print("nuevo estado: activo ");
-      }
-      break;
-    case 2 :
-      if(valorMensaje == '3'){
-        estadoAlarma = 3;
-        Serial.print("nuevo estado: sonando ");
-      }
-      if(valorMensaje == '0'){
-        estadoAlarma = 0;
-        Serial.print("nuevo estado: inactivo ");
-      }
-      break;
-    case 3 :
-      if(valorMensaje == '0'){
-        estadoAlarma = 0;
-        Serial.print("nuevo estado: inactivo ");
-      }
-      break;
-    default:
-      break;
+  if(valorMensaje == '3'){
+    estadoAlarma = 3;
+    Serial.println("nuevo estado: 3 ");
+  }else if(valorMensaje == '2'){
+    estadoAlarma = 2;
+    Serial.println("nuevo estado: 2 ");
+  }else if(valorMensaje == '1'){
+    estadoAlarma = 1;
+    Serial.println("nuevo estado: 1 ");
+  }else if(valorMensaje == '0'){
+    estadoAlarma = 0;
+    Serial.println("nuevo estado: 0 ");
   }
 
 }
@@ -196,7 +172,8 @@ void sendData(){
     stringComplete = false;   
   }
   else if(movimientoDetectado == 1){
-    Wire.write("1A1T");   
+    Wire.write("1A1T");  
+    Serial.println("MovimientoDetectado");
     movimientoDetectado =0;
   }
   else{

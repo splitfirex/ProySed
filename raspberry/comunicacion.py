@@ -1,12 +1,17 @@
-#import smbus
+import smbus
 import time
 import requests
+import logging
+
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class comunicacion:
 	url = "http://localhost:8888"
-	bus = '1'
+	bus = smbus.SMBus(1)
 	address = 0x04
 	params = {"verbose": False}
+
 
 	@classmethod
 	def consultaI2C(cls):
