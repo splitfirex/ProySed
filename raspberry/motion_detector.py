@@ -14,7 +14,7 @@ def main_loop():
 	config.read('camarasConfig.properties')
 	rutas = config.get('Camara', 'camara.rutas').split()
 	nombres = config.get('Camara', 'camara.nombres').split()
-	params = {"framesFolder" : config.get('Camara', 'camara.framesfolder'),"weburl" : config.get('Camara', 'camara.weburl') }
+	params = {"framesFolder" : config.get('Camara', 'camara.framesfolder'),"weburl" : config.get('Camara', 'camara.weburl'), "urlFramesfolder": config.get('Camara', 'camara.urlFramesfolder') }
 	#framesFolder = config.get('Camara', 'camara.framesfolder')
 	#urlweb = config.get('Camara', 'camara.weburl')
 

@@ -3,6 +3,7 @@ import json
 from xml.etree.ElementTree import Element
 import xml.etree.ElementTree as ET
 import datetime
+from PIL import Image
 
 cl = []
 
@@ -89,6 +90,18 @@ class ApiHandler(web.RequestHandler):
     def post(self):
         pass
 
+class ImageHandler(web.RequestHandler):
+    @web.asynchronous
+    def get(self, filename):
+        f = Image.open("/home/pi/ProySed/webserver/frames/" + filename)
+        o = io.BytesIO()
+        f.save(o, format="JPEG")
+        s = o.getvalue()
+        self.set_header('Content-type', 'image/jpg')
+        self.set_header('Content-length', len(s))   
+        self.write(s) 
+
+
 class RestHandler(web.RequestHandler):
 
     def get(self,*args):
@@ -117,6 +130,8 @@ app = web.Application([
     (r'/api', ApiHandler),
     (r'/rest', RestHandler),
     (r'/(.*)', web.StaticFileHandler, {'path': './'}),
+    
+    
 ])
 
 if __name__ == '__main__':

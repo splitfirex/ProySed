@@ -31,6 +31,7 @@ class alarmaMonitor (threading.Thread):
 		self.movimiento = False
 		self.alarma = ''
 		self.framesFolder = params["framesFolder"]
+		self.urlFramesfolder = params["urlFramesfolder"]
 		self.url = params["weburl"]
 		self.contadorPass = 0;
 		self.password = '';
@@ -48,13 +49,14 @@ class alarmaMonitor (threading.Thread):
 			print "{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)
 			cv2.imwrite("{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder),frame)
 			comunicacion.notificaI2C("R3T")
-			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=camara&nombre={0}&fecha={1}&imagen={2}".format(mov,fechaImagen,"{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.framesFolder)))
+			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=camara&nombre={0}&fecha={1}&imagen={2}".format(mov,fechaImagen,"{2}{0}-{1}.jpg".format(self.alarma,fechaImagen,self.urlFramesfolder)))
 			self.ea = estadoAlarma.Sonando
 			comunicacion.notificaHTTP("/api?action=cambiarestado&estado=Sonando")
 			# aprovecho a almacenar en el historico las alarmas correspondientes en el caso que vengan de sensores
 		if self.ea is estadoAlarma.Activa and frame is None:
 			self.movimiento = True
 			self.alarma = mov
+			fechaImagen = datetime.datetime.now().strftime("%Y-%b-%d-%I-%M-%S%p")
 			comunicacion.notificaI2C("R3T")
 			comunicacion.notificaHTTP("/api?action=insertarmovimiento&tipo=Infrarojo&nombre={0}&fecha={1}&imagen=None".format(mov,fechaImagen))
 			self.ea = estadoAlarma.Sonando
@@ -67,15 +69,19 @@ class alarmaMonitor (threading.Thread):
 		if webdata["estado"] == "Inactiva":
 			print "setea el estado inactiva"
 			self.ea = estadoAlarma.Inactiva
+			comunicacion.notificaI2C("R0T")
 		if webdata["estado"] == "Preactiva":
 			print "setea el estado Preactiva"
 			self.ea = estadoAlarma.Preactiva
+			comunicacion.notificaI2C("R1T")
 		if webdata["estado"] == "Activa":
 			print "setea el estado Activa"
 			self.ea = estadoAlarma.Activa
+			comunicacion.notificaI2C("R2T")
 		if webdata["estado"] == "Sonando":
 			print "setea el estado Sonando"
 			self.ea = estadoAlarma.Sonando
+			comunicacion.notificaI2C("R3T")
 
 	def notificaEstadoWeb(self):
 		webdata = "Sin Conexion"
@@ -88,11 +94,14 @@ class alarmaMonitor (threading.Thread):
 		if self.ea is estadoAlarma.Sonando:
 			webdata = "Sonando"
 		comunicacion.notificaHTTP("/api?action=cambiarestado&estado="+webdata)
+		
 
 	def ingresaContrasena(self,char):
 		self.password = char.split("D")[1].split("T")[0]
-		webdata = comunicacion.consultaHTTP("consultar/password");
-		if webdata is self.password:
+		webdata = comunicacion.consultaHTTP("/rest?action=consultarpassword");
+		print "el password consultado fue: ", webdata
+		print "el password entregado fue: ", self.password
+		if webdata["password"] == self.password:
 			if self.ea is estadoAlarma.Inactiva:
 				self.ea = estadoAlarma.Preactiva
 				comunicacion.notificaI2C("R1T")
@@ -112,6 +121,7 @@ class alarmaMonitor (threading.Thread):
 	# Se esperan 15 segundos y luego cambiamos el estado a activa (Notificar el I2C ?).
 	def estadoPreactiva(self):
 		time.sleep(15)
+		comunicacion.notificaI2C("R2T")
 		self.ea = estadoAlarma.Activa
 		self.notificaEstadoWeb()
 		pass
@@ -141,14 +151,12 @@ class alarmaMonitor (threading.Thread):
 				
 			if self.ea is estadoAlarma.Inactiva:
 				self.estadoInactivo()
-			
-			if self.ea is estadoAlarma.Preactiva:
+			elif self.ea is estadoAlarma.Preactiva:
 				self.estadoPreactiva()
-			
-			if self.ea is estadoAlarma.Activa:
+			elif self.ea is estadoAlarma.Activa:
 				self.estadoActiva()
 
-			if self.ea is estadoAlarma.Sonando:
+			elif self.ea is estadoAlarma.Sonando:
 				self.estadoSonando()
 
 			time.sleep(1)
