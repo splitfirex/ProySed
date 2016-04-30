@@ -139,30 +139,17 @@ int main(void)
   setSysTick();
   setup_Periph(); // initialize USART1 @ 9600 baud
 
-  USART_puts(USART2, "inicializado la discovery \r\n");
-
   // init und Check vom Touch
   if(UB_Touch_Init()!=SUCCESS) {
     UB_Font_DrawString(10,10,"Touch Error",&Arial_11x18,RGB_COL_WHITE,RGB_COL_RED);
     while(1);
   }
 
-  char valores[12] = "7894561230EC";
-  int i=0;
-  int j=0;
-  int contador = 0;
-  for(i=0 ; i < 3 ; i++){
-	  for(j =0; j <3 ; j++){
-		  P_dibujar_cuadro((j*80), (i*80), 80, valores[contador++] );
-	  }
-  }
-  P_dibujar_cuadro((1*80),(3*80), 80, valores[contador++] );
-  P_dibujar_cuadro((0*80),(3*80), 80, valores[contador++] );
-  P_dibujar_cuadro((2*80),(3*80), 80, valores[contador++] );
-  //P_drawScreen();
-  //LCD_DrawFullRect(0, 0, 240, 248, LCD_COLOR_BLUE2);
 
-  char valoresSalida[6] = "    \r\n";
+  aktColor=RGB_COL_BLUE;
+  char valores[12] = "7894561230EC";
+  P_drawScreen();
+  char valoresSalida[32] = "";
   int contadorPresion =0;
   while(1)
   {
@@ -172,73 +159,90 @@ int main(void)
     	xp=Touch_Data.xp;
     	yp=Touch_Data.yp;
 
-    	if(contadorPresion>4){
-    	    		contadorPresion =0;
-    	    	}
+    	if(contadorPresion>28){
+    	    contadorPresion =0;
+    	}
 
     	if ((yp <= 80) && (yp >= 0) && (xp >= 0) && (xp <= 80))
         {
-    		USART_puts(USART2, "7\r\n");
         	valoresSalida[contadorPresion++]= '7';
+  		    P_dibujar_cuadro_press(0, 0, 80, valores[0],RGB_COL_BLUE,RGB_COL_CYAN );
         }
     	else if ((yp <= 80) && (yp >= 0) && (xp >= 81) && (xp <= 160))
         {
-    		USART_puts(USART2, "8\r\n");
     		valoresSalida[contadorPresion++]= '8';
+    		P_dibujar_cuadro_press(80, 0, 80, valores[1],RGB_COL_BLUE,RGB_COL_CYAN );
         }
-    	else if ((yp <= 80) && (yp >= 0) && (xp >= 161) && (xp <= 240))
+    	else if ((yp <= 80) && (yp >= 0) && (xp >= 161) && (xp <= 238))
         {
-    		USART_puts(USART2, "9\r\n");
     		valoresSalida[contadorPresion++]= '9';
+    		P_dibujar_cuadro_press(160, 0, 80, valores[2],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 160) && (yp >= 81) && (xp >= 0) && (xp <= 80))
         {
-        	USART_puts(USART2, "4\r\n");
         	valoresSalida[contadorPresion++]= '4';
+        	P_dibujar_cuadro_press(0, 80, 80, valores[3],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 160) && (yp >= 81) && (xp >= 81) && (xp <= 160))
 		{
-        	USART_puts(USART2, "5\r\n");
         	valoresSalida[contadorPresion++]= '5';
+        	P_dibujar_cuadro_press(80, 80, 80, valores[4],RGB_COL_BLUE,RGB_COL_CYAN );
 		}
-        else if ((yp <= 160) && (yp >= 81) && (xp >= 161) && (xp <= 240))
+        else if ((yp <= 160) && (yp >= 81) && (xp >= 161) && (xp <= 238))
 		{
-        	USART_puts(USART2, "6\r\n");
         	valoresSalida[contadorPresion++]= '6';
+        	P_dibujar_cuadro_press(160, 80, 80, valores[5],RGB_COL_BLUE,RGB_COL_CYAN );
 		}
         else if ((yp <= 240) && (yp >= 161) && (xp >= 0) && (xp <= 80))
         {
-        	USART_puts(USART2, "1\r\n");
         	valoresSalida[contadorPresion++]= '1';
+        	P_dibujar_cuadro_press(0, 160, 80, valores[6],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 240) && (yp >= 161) && (xp >= 81) && (xp <= 160))
         {
-        	USART_puts(USART2, "2\r\n");
         	valoresSalida[contadorPresion++]= '2';
+        	P_dibujar_cuadro_press(80, 160, 80, valores[7],RGB_COL_BLUE,RGB_COL_CYAN );
         }
-        else if ((yp <= 240) && (yp >= 161) && (xp >= 161) && (xp <= 240))
+        else if ((yp <= 240) && (yp >= 161) && (xp >= 161) && (xp <= 238))
         {
-        	USART_puts(USART2, "3\r\n");
         	valoresSalida[contadorPresion++]= '3';
+        	P_dibujar_cuadro_press(160, 160, 80, valores[8],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 320) && (yp >= 241) && (xp >= 0) && (xp <= 80))
 		{
-        	USART_puts(USART2, "E\r\n");
-			USART_puts(USART2, valoresSalida);
-			contadorPresion =0;
+        	if(contadorPresion > 0){
+				USART_puts(USART2, "1D");
+				USART_puts(USART2, valoresSalida);
+				USART_puts(USART2, "T\r\n");
+				memset(valoresSalida, 0, 32);
+				contadorPresion = 0;
+				P_dibujar_cuadro_press(0, 240, 80, valores[10],RGB_COL_RED,RGB_COL_CYAN );
+        	}
 		}
 		else if ((yp <= 320) && (yp >= 241) && (xp >= 81) && (xp <= 160))
 		{
-			USART_puts(USART2, "0\r\n");
 			valoresSalida[contadorPresion++]= '0';
+			P_dibujar_cuadro_press(80, 240, 80, valores[9],RGB_COL_BLUE,RGB_COL_CYAN );
 		}
-		else if ((yp <= 320) && (yp >= 241) && (xp >= 161) && (xp <= 240))
+		else if ((yp <= 320) && (yp >= 241) && (xp >= 161) && (xp <= 238))
 		{
-			USART_puts(USART2, "C\r\n");
-			contadorPresion = 0;
+			if(contadorPresion > 0){
+				memset(valoresSalida, 0, 32);
+				contadorPresion = 0;
+				P_dibujar_cuadro_press(160, 240, 80, valores[11],RGB_COL_RED,RGB_COL_CYAN );
+			}
 		}
 
-    	Delay(500);
+    	if(contadorPresion == 0){
+    		  P_dibujar_cuadro((0*80),(3*80), 80, valores[10], RGB_COL_BLACK );
+    		  P_dibujar_cuadro((2*80),(3*80), 80, valores[11], RGB_COL_BLACK );
+    	}else{
+    		P_dibujar_cuadro((0*80),(3*80), 80, valores[10], RGB_COL_RED );
+    		P_dibujar_cuadro((2*80),(3*80), 80, valores[11], RGB_COL_RED );
+    	}
+
+
+    	Delay(100);
 
     }
   }
@@ -249,41 +253,35 @@ int main(void)
 void P_drawScreen(void)
 {
 
-    LCD_DrawFullRect(5, 250, 30, 30, LCD_COLOR_BLUE2);
-    LCD_DrawFullRect(40, 250, 30, 30, LCD_COLOR_CYAN);
-    LCD_DrawFullRect(75, 250, 30, 30, LCD_COLOR_YELLOW);
-    LCD_DrawFullRect(5, 288, 30, 30, LCD_COLOR_RED);
-    LCD_DrawFullRect(40, 288, 30, 30, LCD_COLOR_BLUE);
-    LCD_DrawFullRect(75, 288, 30, 30, LCD_COLOR_GREEN);
-    LCD_DrawFullRect(145, 288, 30, 30, LCD_COLOR_MAGENTA);
-    LCD_DrawFullRect(110, 288, 30, 30, LCD_COLOR_BLACK);
-    LCD_DrawRect(180, 270, 48, 50, LCD_COLOR_BLACK);
-    LCD_DrawLine(0, 248, 240, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(0, 284, 180, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(1, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(37, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(72, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(107, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(142, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(0, 319, 240, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);
-    P_drawClear();
+	 char valores[12] = "7894561230EC";
+	  int i=0;
+	  int j=0;
+	  int contador = 0;
+	  for(i=0 ; i < 3 ; i++){
+		  for(j =0; j <3 ; j++){
+			  P_dibujar_cuadro((j*80), (i*80), 80, valores[contador++],RGB_COL_BLUE );
+		  }
+	  }
+	  P_dibujar_cuadro((1*80),(3*80), 80, valores[contador++], RGB_COL_BLUE );
+	  P_dibujar_cuadro((0*80),(3*80), 80, valores[contador++], RGB_COL_BLACK );
+	  P_dibujar_cuadro((2*80),(3*80), 80, valores[contador++], RGB_COL_BLACK );
 
 }
 
-void P_dibujar_cuadro(int posx, int posy, int l, char letra){
+void P_dibujar_cuadro(int posx, int posy, int l, char* letra, uint16_t color){
 
 	LCD_DrawRect(posx, posy, l, l, LCD_COLOR_BLACK);
-	LCD_DrawFullRect(posx+3, posy+3, l-5, l-5, aktColor);
-	UB_Font_DrawString(posx+35,posy+35,&letra,&Arial_11x18,RGB_COL_BLACK,RGB_COL_WHITE);
+	LCD_DrawFullRect(posx+3, posy+3, l-5, l-5, color);
+	UB_Font_DrawString(posx+35,posy+35,&letra,&Arial_11x18,RGB_COL_WHITE,color);
 
 }
 
-//--------------------------------------------------------------
-void P_drawClear(void)
-{
-	LCD_DrawRect(180, 270, 48, 50, LCD_COLOR_BLACK);
-	LCD_DrawFullRect(182, 272, 46, 46, aktColor);
-	UB_Font_DrawString(190,290,"CLR",&Arial_11x18,RGB_COL_BLACK,RGB_COL_WHITE);
+void P_dibujar_cuadro_press(int posx, int posy, int l, char* letra, uint16_t color, uint16_t color2 ){
+
+	P_dibujar_cuadro(posx, posy, 80, letra,color2 );
+	Delay(200);
+	P_dibujar_cuadro(posx, posy, 80, letra,color );
+
 }
 
 
@@ -383,66 +381,3 @@ void LCD_DrawRect(uint16_t Xpos, uint16_t Ypos, uint16_t Height, uint16_t Width,
   LCD_DrawLine(Xpos, Ypos, Height, LCD_DIR_VERTICAL, color);
   LCD_DrawLine((Xpos + Width), Ypos, Height, LCD_DIR_VERTICAL, color);
 }
-
-
-//--------------------------------------------------------------
-void LCD_DrawFullCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius, uint16_t color)
-{
-  int32_t  D;    /* Decision Variable */
-  uint32_t  CurX;/* Current X Value */
-  uint32_t  CurY;/* Current Y Value */
-
-  D = 3 - (Radius << 1);
-
-  CurX = 0;
-  CurY = Radius;
-
-  while (CurX <= CurY)
-  {
-    if(CurY > 0)
-    {
-      LCD_DrawLine(Xpos - CurX, Ypos - CurY, 2*CurY, LCD_DIR_VERTICAL, color);
-      LCD_DrawLine(Xpos + CurX, Ypos - CurY, 2*CurY, LCD_DIR_VERTICAL, color);
-    }
-
-    if(CurX > 0)
-    {
-      LCD_DrawLine(Xpos - CurY, Ypos - CurX, 2*CurX, LCD_DIR_VERTICAL, color);
-      LCD_DrawLine(Xpos + CurY, Ypos - CurX, 2*CurX, LCD_DIR_VERTICAL, color);
-    }
-    if (D < 0)
-    {
-      D += (CurX << 2) + 6;
-    }
-    else
-    {
-      D += ((CurX - CurY) << 2) + 10;
-      CurY--;
-    }
-    CurX++;
-  }
-
-  LCD_DrawCircle(Xpos, Ypos, Radius, color);
-}
-
-
-//--------------------------------------------------------------
-void LCD_DrawCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius, uint16_t color)
-{
-    int x = -Radius, y = 0, err = 2-2*Radius, e2;
-    do {
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos-x) + LCD_MAXX*(Ypos+y)))) = color;
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos+x) + LCD_MAXX*(Ypos+y)))) = color;
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos+x) + LCD_MAXX*(Ypos-y)))) = color;
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos-x) + LCD_MAXX*(Ypos-y)))) = color;
-
-        e2 = err;
-        if (e2 <= y) {
-            err += ++y*2+1;
-            if (-x == y && e2 <= x) e2 = 0;
-        }
-        if (e2 > x) err += ++x*2+1;
-    }
-    while (x <= 0);
-}
-
