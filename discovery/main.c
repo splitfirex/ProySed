@@ -13,7 +13,7 @@
 // Hinweis  : Diese zwei Files muessen auf 8MHz stehen
 //              "cmsis_boot/stm32f4xx.h"
 //              "cmsis_boot/system_stm32f4xx.c"
-// In Configuration diese Define hinzufügen :
+// In Configuration diese Define hinzufÃ¼gen :
 // "STM32F429_439xx" , "__ASSEMBLY__" , "USE_STDPERIPH_DRIVER"
 //--------------------------------------------------------------
 
@@ -64,21 +64,23 @@ void setup_Periph(){
 	NVIC_InitTypeDef NVIC_InitStructure;
 
 	// Enable the APB1 periph clock for USART2
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
 	// Enable the GPIOA clock, used by pins PA2, PA3
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
+
 	// Setup the GPIO pins for Tx and Rx
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
 
 	// Connect PA2 and PA3 with the USART2 Alternate Function
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_UART4);
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_UART4);
 
 	USART_InitStructure.USART_BaudRate = 9600;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
@@ -86,29 +88,29 @@ void setup_Periph(){
 	USART_InitStructure.USART_Parity = USART_Parity_No;
 	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
-	USART_Init(USART2, &USART_InitStructure);
+	USART_Init(UART4, &USART_InitStructure);
 
 	/* Enable the USART2 receive interrupt and configure
 		the interrupt controller to jump to USART2_IRQHandler()
 		if the USART2 receive interrupt occurs
 	*/
-	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+	//USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
 
-	NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
+	//NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
+	//NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	//NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	//NVIC_Init(&NVIC_InitStructure);
 
 	// Finally enable the USART2 peripheral
-	USART_Cmd(USART2, ENABLE);
+	USART_Cmd(UART4, ENABLE);
 }
 
 void USART_puts(USART_TypeDef *USARTx, volatile char *str){
 	while(*str){
 		// Wait for the TC (Transmission Complete) Flag to be set
 		// while(!(USARTx->SR & 0x040));
-		while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
+		while(USART_GetFlagStatus(UART4, USART_FLAG_TC) == RESET);
 		USART_SendData(USARTx, *str);
 		*str++;
 	}
@@ -126,11 +128,11 @@ int main(void)
   UB_LCD_LayerInit_Fullscreen();
   // auf Hintergrund schalten
   UB_LCD_SetLayer_1();
-  // Hintergrund komplett mit einer Farbe füllen
+  // Hintergrund komplett mit einer Farbe fÃ¼llen
   UB_LCD_FillLayer(RGB_COL_WHITE);
   // auf Vordergrund schalten
   UB_LCD_SetLayer_2();
-  // Vordergrund komplett mit einer Farbe füllen
+  // Vordergrund komplett mit einer Farbe fÃ¼llen
   UB_LCD_FillLayer(RGB_COL_WHITE);
 
   CurrentFrameBuffer=LCD_FRAME_BUFFER + LCD_FRAME_OFFSET;
@@ -138,31 +140,18 @@ int main(void)
 
   setSysTick();
   setup_Periph(); // initialize USART1 @ 9600 baud
-
-  USART_puts(USART2, "inicializado la discovery \r\n");
-
+  USART_puts(UART4, "Inicializado discovery");
   // init und Check vom Touch
   if(UB_Touch_Init()!=SUCCESS) {
     UB_Font_DrawString(10,10,"Touch Error",&Arial_11x18,RGB_COL_WHITE,RGB_COL_RED);
     while(1);
   }
 
-  char valores[12] = "7894561230EC";
-  int i=0;
-  int j=0;
-  int contador = 0;
-  for(i=0 ; i < 3 ; i++){
-	  for(j =0; j <3 ; j++){
-		  P_dibujar_cuadro((j*80), (i*80), 80, valores[contador++] );
-	  }
-  }
-  P_dibujar_cuadro((1*80),(3*80), 80, valores[contador++] );
-  P_dibujar_cuadro((0*80),(3*80), 80, valores[contador++] );
-  P_dibujar_cuadro((2*80),(3*80), 80, valores[contador++] );
-  //P_drawScreen();
-  //LCD_DrawFullRect(0, 0, 240, 248, LCD_COLOR_BLUE2);
 
-  char valoresSalida[6] = "    \r\n";
+  aktColor=RGB_COL_BLUE;
+  char valores[12] = "7894561230EC";
+  P_drawScreen();
+  char valoresSalida[32] = "";
   int contadorPresion =0;
   while(1)
   {
@@ -172,73 +161,90 @@ int main(void)
     	xp=Touch_Data.xp;
     	yp=Touch_Data.yp;
 
-    	if(contadorPresion>4){
-    	    		contadorPresion =0;
-    	    	}
+    	if(contadorPresion>28){
+    	    contadorPresion =0;
+    	}
 
     	if ((yp <= 80) && (yp >= 0) && (xp >= 0) && (xp <= 80))
         {
-    		USART_puts(USART2, "7\r\n");
         	valoresSalida[contadorPresion++]= '7';
+  		    P_dibujar_cuadro_press(0, 0, 80, valores[0],RGB_COL_BLUE,RGB_COL_CYAN );
         }
     	else if ((yp <= 80) && (yp >= 0) && (xp >= 81) && (xp <= 160))
         {
-    		USART_puts(USART2, "8\r\n");
     		valoresSalida[contadorPresion++]= '8';
+    		P_dibujar_cuadro_press(80, 0, 80, valores[1],RGB_COL_BLUE,RGB_COL_CYAN );
         }
-    	else if ((yp <= 80) && (yp >= 0) && (xp >= 161) && (xp <= 240))
+    	else if ((yp <= 80) && (yp >= 0) && (xp >= 161) && (xp <= 238))
         {
-    		USART_puts(USART2, "9\r\n");
     		valoresSalida[contadorPresion++]= '9';
+    		P_dibujar_cuadro_press(160, 0, 80, valores[2],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 160) && (yp >= 81) && (xp >= 0) && (xp <= 80))
         {
-        	USART_puts(USART2, "4\r\n");
         	valoresSalida[contadorPresion++]= '4';
+        	P_dibujar_cuadro_press(0, 80, 80, valores[3],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 160) && (yp >= 81) && (xp >= 81) && (xp <= 160))
 		{
-        	USART_puts(USART2, "5\r\n");
         	valoresSalida[contadorPresion++]= '5';
+        	P_dibujar_cuadro_press(80, 80, 80, valores[4],RGB_COL_BLUE,RGB_COL_CYAN );
 		}
-        else if ((yp <= 160) && (yp >= 81) && (xp >= 161) && (xp <= 240))
+        else if ((yp <= 160) && (yp >= 81) && (xp >= 161) && (xp <= 238))
 		{
-        	USART_puts(USART2, "6\r\n");
         	valoresSalida[contadorPresion++]= '6';
+        	P_dibujar_cuadro_press(160, 80, 80, valores[5],RGB_COL_BLUE,RGB_COL_CYAN );
 		}
         else if ((yp <= 240) && (yp >= 161) && (xp >= 0) && (xp <= 80))
         {
-        	USART_puts(USART2, "1\r\n");
         	valoresSalida[contadorPresion++]= '1';
+        	P_dibujar_cuadro_press(0, 160, 80, valores[6],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 240) && (yp >= 161) && (xp >= 81) && (xp <= 160))
         {
-        	USART_puts(USART2, "2\r\n");
         	valoresSalida[contadorPresion++]= '2';
+        	P_dibujar_cuadro_press(80, 160, 80, valores[7],RGB_COL_BLUE,RGB_COL_CYAN );
         }
-        else if ((yp <= 240) && (yp >= 161) && (xp >= 161) && (xp <= 240))
+        else if ((yp <= 240) && (yp >= 161) && (xp >= 161) && (xp <= 238))
         {
-        	USART_puts(USART2, "3\r\n");
         	valoresSalida[contadorPresion++]= '3';
+        	P_dibujar_cuadro_press(160, 160, 80, valores[8],RGB_COL_BLUE,RGB_COL_CYAN );
         }
         else if ((yp <= 320) && (yp >= 241) && (xp >= 0) && (xp <= 80))
 		{
-        	USART_puts(USART2, "E\r\n");
-			USART_puts(USART2, valoresSalida);
-			contadorPresion =0;
+        	if(contadorPresion > 0){
+				USART_puts(UART4, "1D");
+				USART_puts(UART4, valoresSalida);
+				USART_puts(UART4, "T");
+				memset(valoresSalida, 0, 32);
+				contadorPresion = 0;
+				P_dibujar_cuadro_press(0, 240, 80, valores[10],RGB_COL_RED,RGB_COL_CYAN );
+        	}
 		}
 		else if ((yp <= 320) && (yp >= 241) && (xp >= 81) && (xp <= 160))
 		{
-			USART_puts(USART2, "0\r\n");
 			valoresSalida[contadorPresion++]= '0';
+			P_dibujar_cuadro_press(80, 240, 80, valores[9],RGB_COL_BLUE,RGB_COL_CYAN );
 		}
-		else if ((yp <= 320) && (yp >= 241) && (xp >= 161) && (xp <= 240))
+		else if ((yp <= 320) && (yp >= 241) && (xp >= 161) && (xp <= 238))
 		{
-			USART_puts(USART2, "C\r\n");
-			contadorPresion = 0;
+			if(contadorPresion > 0){
+				memset(valoresSalida, 0, 32);
+				contadorPresion = 0;
+				P_dibujar_cuadro_press(160, 240, 80, valores[11],RGB_COL_RED,RGB_COL_CYAN );
+			}
 		}
 
-    	Delay(500);
+    	if(contadorPresion == 0){
+    		  P_dibujar_cuadro((0*80),(3*80), 80, valores[10], RGB_COL_BLACK );
+    		  P_dibujar_cuadro((2*80),(3*80), 80, valores[11], RGB_COL_BLACK );
+    	}else{
+    		P_dibujar_cuadro((0*80),(3*80), 80, valores[10], RGB_COL_RED );
+    		P_dibujar_cuadro((2*80),(3*80), 80, valores[11], RGB_COL_RED );
+    	}
+
+
+    	Delay(100);
 
     }
   }
@@ -249,41 +255,35 @@ int main(void)
 void P_drawScreen(void)
 {
 
-    LCD_DrawFullRect(5, 250, 30, 30, LCD_COLOR_BLUE2);
-    LCD_DrawFullRect(40, 250, 30, 30, LCD_COLOR_CYAN);
-    LCD_DrawFullRect(75, 250, 30, 30, LCD_COLOR_YELLOW);
-    LCD_DrawFullRect(5, 288, 30, 30, LCD_COLOR_RED);
-    LCD_DrawFullRect(40, 288, 30, 30, LCD_COLOR_BLUE);
-    LCD_DrawFullRect(75, 288, 30, 30, LCD_COLOR_GREEN);
-    LCD_DrawFullRect(145, 288, 30, 30, LCD_COLOR_MAGENTA);
-    LCD_DrawFullRect(110, 288, 30, 30, LCD_COLOR_BLACK);
-    LCD_DrawRect(180, 270, 48, 50, LCD_COLOR_BLACK);
-    LCD_DrawLine(0, 248, 240, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(0, 284, 180, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(1, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(37, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(72, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(107, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(142, 248, 71, LCD_DIR_VERTICAL, LCD_COLOR_BLACK);
-    LCD_DrawLine(0, 319, 240, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);
-    P_drawClear();
+	 char valores[12] = "7894561230EC";
+	  int i=0;
+	  int j=0;
+	  int contador = 0;
+	  for(i=0 ; i < 3 ; i++){
+		  for(j =0; j <3 ; j++){
+			  P_dibujar_cuadro((j*80), (i*80), 80, valores[contador++],RGB_COL_BLUE );
+		  }
+	  }
+	  P_dibujar_cuadro((1*80),(3*80), 80, valores[contador++], RGB_COL_BLUE );
+	  P_dibujar_cuadro((0*80),(3*80), 80, valores[contador++], RGB_COL_BLACK );
+	  P_dibujar_cuadro((2*80),(3*80), 80, valores[contador++], RGB_COL_BLACK );
 
 }
 
-void P_dibujar_cuadro(int posx, int posy, int l, char letra){
+void P_dibujar_cuadro(int posx, int posy, int l, char* letra, uint16_t color){
 
 	LCD_DrawRect(posx, posy, l, l, LCD_COLOR_BLACK);
-	LCD_DrawFullRect(posx+3, posy+3, l-5, l-5, aktColor);
-	UB_Font_DrawString(posx+35,posy+35,&letra,&Arial_11x18,RGB_COL_BLACK,RGB_COL_WHITE);
+	LCD_DrawFullRect(posx+3, posy+3, l-5, l-5, color);
+	UB_Font_DrawString(posx+35,posy+35,&letra,&Arial_11x18,RGB_COL_WHITE,color);
 
 }
 
-//--------------------------------------------------------------
-void P_drawClear(void)
-{
-	LCD_DrawRect(180, 270, 48, 50, LCD_COLOR_BLACK);
-	LCD_DrawFullRect(182, 272, 46, 46, aktColor);
-	UB_Font_DrawString(190,290,"CLR",&Arial_11x18,RGB_COL_BLACK,RGB_COL_WHITE);
+void P_dibujar_cuadro_press(int posx, int posy, int l, char* letra, uint16_t color, uint16_t color2 ){
+
+	P_dibujar_cuadro(posx, posy, 80, letra,color2 );
+	Delay(200);
+	P_dibujar_cuadro(posx, posy, 80, letra,color );
+
 }
 
 
@@ -383,66 +383,3 @@ void LCD_DrawRect(uint16_t Xpos, uint16_t Ypos, uint16_t Height, uint16_t Width,
   LCD_DrawLine(Xpos, Ypos, Height, LCD_DIR_VERTICAL, color);
   LCD_DrawLine((Xpos + Width), Ypos, Height, LCD_DIR_VERTICAL, color);
 }
-
-
-//--------------------------------------------------------------
-void LCD_DrawFullCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius, uint16_t color)
-{
-  int32_t  D;    /* Decision Variable */
-  uint32_t  CurX;/* Current X Value */
-  uint32_t  CurY;/* Current Y Value */
-
-  D = 3 - (Radius << 1);
-
-  CurX = 0;
-  CurY = Radius;
-
-  while (CurX <= CurY)
-  {
-    if(CurY > 0)
-    {
-      LCD_DrawLine(Xpos - CurX, Ypos - CurY, 2*CurY, LCD_DIR_VERTICAL, color);
-      LCD_DrawLine(Xpos + CurX, Ypos - CurY, 2*CurY, LCD_DIR_VERTICAL, color);
-    }
-
-    if(CurX > 0)
-    {
-      LCD_DrawLine(Xpos - CurY, Ypos - CurX, 2*CurX, LCD_DIR_VERTICAL, color);
-      LCD_DrawLine(Xpos + CurY, Ypos - CurX, 2*CurX, LCD_DIR_VERTICAL, color);
-    }
-    if (D < 0)
-    {
-      D += (CurX << 2) + 6;
-    }
-    else
-    {
-      D += ((CurX - CurY) << 2) + 10;
-      CurY--;
-    }
-    CurX++;
-  }
-
-  LCD_DrawCircle(Xpos, Ypos, Radius, color);
-}
-
-
-//--------------------------------------------------------------
-void LCD_DrawCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius, uint16_t color)
-{
-    int x = -Radius, y = 0, err = 2-2*Radius, e2;
-    do {
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos-x) + LCD_MAXX*(Ypos+y)))) = color;
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos+x) + LCD_MAXX*(Ypos+y)))) = color;
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos+x) + LCD_MAXX*(Ypos-y)))) = color;
-        *(__IO uint16_t*) (CurrentFrameBuffer + (2*((Xpos-x) + LCD_MAXX*(Ypos-y)))) = color;
-
-        e2 = err;
-        if (e2 <= y) {
-            err += ++y*2+1;
-            if (-x == y && e2 <= x) e2 = 0;
-        }
-        if (e2 > x) err += ++x*2+1;
-    }
-    while (x <= 0);
-}
-
