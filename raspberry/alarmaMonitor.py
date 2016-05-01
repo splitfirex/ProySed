@@ -81,7 +81,7 @@ class alarmaMonitor (threading.Thread):
 			comunicacion.notificaI2C("R2T")
 		if webdata["estado"] == "Presonando":
 			print "setea el estado Presonando"
-			self.ea = estadoAlarma.Sonando
+			self.ea = estadoAlarma.Presonando
 			comunicacion.notificaI2C("R3T")
 		if webdata["estado"] == "Sonando":
 			print "setea el estado Sonando"
@@ -147,6 +147,8 @@ class alarmaMonitor (threading.Thread):
 		if data[0] is '1':
 			if data[1] is 'D':
 				self.ingresaContrasena(data)
+		self.contadorSonador+=1
+		print "el contador esta en", self.contadorSonador
 		if(self.contadorSonador > 15):
 			self.contadorSonador = 0
 			self.ea = estadoAlarma.Sonando

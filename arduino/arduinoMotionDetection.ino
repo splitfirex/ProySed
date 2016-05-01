@@ -130,6 +130,7 @@ void estadoPreActivo(){
 // Leemos los sensores de movimiento y realizamos la notificacion a la RASP
 void estadoActivo(){
   digitalWrite(sensorledPinoff, LOW);
+  digitalWrite(sensorledPin, HIGH);
   valorSensor1 = digitalRead(sensor1Pin); 
   valorSensor2 = digitalRead(sensor2Pin);
 
