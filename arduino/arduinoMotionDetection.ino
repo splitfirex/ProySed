@@ -2,7 +2,8 @@
 #define SLAVE_ADDRESS 0x04
 
 //Sensores, zumbador y led
-int sensorledPin = 13;          
+int sensorledPin = 13; 
+int sensorledPinoff =4;         
 int sensor1Pin = 2;     
 int sensor2Pin = 6;
 int zumbadorpin = 10;
@@ -55,7 +56,7 @@ void loop(){
 
   switch(estadoAlarma){
     case 0 :
-      // No se hace nada en el estado inactivo
+      estadoInactivo();
     break;
     case 1 :
       estadoPreActivo();
@@ -89,9 +90,14 @@ void playTone(long duration, int freq) {
     }
 }
 
+void estadoInactivo(){
+  digitalWrite(sensorledPinoff, HIGH);
+  digitalWrite(sensorledPin, LOW);
+}
+
 // Solo suena y prende los led correspondientes
 void estadoSonando(){
-
+  digitalWrite(sensorledPinoff, LOW);
   digitalWrite(sensorledPin, HIGH); // turn LED OFF
   playTone(300, 160);
   delay(100);
@@ -102,7 +108,7 @@ void estadoSonando(){
 
 // Solo suena y prende los led correspondientes
 void estadoPresonando(){
-
+  digitalWrite(sensorledPinoff, LOW);
   digitalWrite(sensorledPin, HIGH); // turn LED OFF
   playTone(100, 160);
   delay(500);
@@ -113,7 +119,7 @@ void estadoPresonando(){
 
 // Se cuenta hasta 15 segundos y luego se activa la alarma 
 void estadoPreActivo(){
-
+  digitalWrite(sensorledPinoff, LOW);
   digitalWrite(sensorledPin, HIGH);
   delay(500);
   digitalWrite(sensorledPin, LOW);
@@ -123,7 +129,7 @@ void estadoPreActivo(){
 
 // Leemos los sensores de movimiento y realizamos la notificacion a la RASP
 void estadoActivo(){
-
+  digitalWrite(sensorledPinoff, LOW);
   valorSensor1 = digitalRead(sensor1Pin); 
   valorSensor2 = digitalRead(sensor2Pin);
 
