@@ -1,2 +1,2 @@
-<alarma estado="Activa" estado-desde="2016/April/30 02:49:58.PM" password="1234">
-</alarma>
+<alarma estado="Inactiva" estado-desde="2016/May/01 03:10:57.PM" password="1234">
+<movimiento fecha="2016-May-01-03-10-44PM" imagen="None" nombre="Sensor IR" tipo="Infrarojo" /><movimiento fecha="2016-May-01-03-08-18PM" imagen="None" nombre="Sensor IR" tipo="Infrarojo" /><movimiento fecha="2016-May-01-03-04-29PM" imagen="None" nombre="Sensor IR" tipo="Infrarojo" /></alarma>

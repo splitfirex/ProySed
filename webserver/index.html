@@ -207,6 +207,11 @@
             <div class="mdl-layout-spacer"></div>
             <i class="material-icons">lock</i>
           </div>
+           <div class="mdl-card__actions mdl-card--border  mdl-color--yellow-500">
+            <a href="#" data-state="Presonando" class="cambiarestado mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Presonando</a>
+            <div class="mdl-layout-spacer"></div>
+            <i class="material-icons">lock</i>
+          </div>
           <div class="mdl-card__actions mdl-card--border mdl-color--red-500">
             <a href="#" data-state="Sonando" class="cambiarestado mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Sonando</a>
             <div class="mdl-layout-spacer"></div>
@@ -337,6 +342,7 @@
           $(".titleColor").removeClass('mdl-color--blue-100');
           $(".titleColor").removeClass('mdl-color--green-500');
           $(".titleColor").removeClass('mdl-color--red-500');
+          $(".titleColor").removeClass('mdl-color--yellow-500');
           
           if(json.estado == "Activa"){
             $(".titleColor").addClass('mdl-color--green-500');
@@ -346,6 +352,8 @@
             $(".titleColor").addClass('mdl-color--blue-100');
           }else if(json.estado == "Sonando"){
             $(".titleColor").addClass('mdl-color--red-500');
+          }else if(json.estado == "Presonando"){
+            $(".titleColor").addClass('mdl-color--yellow-500');
           }
       }
 
@@ -356,6 +364,7 @@
       $(".titleColor").removeClass('mdl-color--blue-100');
       $(".titleColor").removeClass('mdl-color--green-500');
       $(".titleColor").removeClass('mdl-color--red-500');
+      $(".titleColor").removeClass('mdl-color--yellow-500');
       $(".titleColor").addClass('mdl-color--grey-500');
     };
     ws.onerror = function(ev){
@@ -364,6 +373,7 @@
       $(".titleColor").removeClass('mdl-color--blue-100');
       $(".titleColor").removeClass('mdl-color--green-500');
       $(".titleColor").removeClass('mdl-color--red-500');
+      $(".titleColor").removeClass('mdl-color--yellow-500');
       $(".titleColor").addClass('mdl-color--grey-500');
     };
 

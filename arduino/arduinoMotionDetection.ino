@@ -64,6 +64,9 @@ void loop(){
       estadoActivo();
     break;
     case 3 :
+      estadoPresonando();
+    break;
+    case 4 :
       estadoSonando();
     break;
     default:
@@ -94,6 +97,17 @@ void estadoSonando(){
   delay(100);
   digitalWrite(sensorledPin, LOW);
   delay(100);
+
+}
+
+// Solo suena y prende los led correspondientes
+void estadoPresonando(){
+
+  digitalWrite(sensorledPin, HIGH); // turn LED OFF
+  playTone(100, 160);
+  delay(500);
+  digitalWrite(sensorledPin, LOW);
+  delay(500);
 
 }
 
@@ -157,6 +171,9 @@ void receiveData(int byteCount){
   }else if(valorMensaje == '0'){
     estadoAlarma = 0;
     Serial.println("nuevo estado: 0 ");
+  }else if(valorMensaje == '4'){
+    estadoAlarma = 4;
+    Serial.println("nuevo estado: 4 ");
   }
 
 }
