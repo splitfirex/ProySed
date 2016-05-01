@@ -140,7 +140,11 @@ int main(void)
 
   setSysTick();
   setup_Periph(); // initialize USART1 @ 9600 baud
+<<<<<<< HEAD
   USART_puts(UART4, "Inicializado discovery");
+=======
+
+>>>>>>> 777d498f11395d04b1f61a33891281dfd50d4dfc
   // init und Check vom Touch
   if(UB_Touch_Init()!=SUCCESS) {
     UB_Font_DrawString(10,10,"Touch Error",&Arial_11x18,RGB_COL_WHITE,RGB_COL_RED);
@@ -213,9 +217,15 @@ int main(void)
         else if ((yp <= 320) && (yp >= 241) && (xp >= 0) && (xp <= 80))
 		{
         	if(contadorPresion > 0){
+<<<<<<< HEAD
 				USART_puts(UART4, "1D");
 				USART_puts(UART4, valoresSalida);
 				USART_puts(UART4, "T");
+=======
+				USART_puts(USART2, "1D");
+				USART_puts(USART2, valoresSalida);
+				USART_puts(USART2, "T\r\n");
+>>>>>>> 777d498f11395d04b1f61a33891281dfd50d4dfc
 				memset(valoresSalida, 0, 32);
 				contadorPresion = 0;
 				P_dibujar_cuadro_press(0, 240, 80, valores[10],RGB_COL_RED,RGB_COL_CYAN );
