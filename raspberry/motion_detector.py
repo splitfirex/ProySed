@@ -6,10 +6,14 @@
 import ConfigParser
 from camaraDetector import camaraDetector
 from alarmaMonitor import alarmaMonitor
+import time
+import os
 
 Alarma = False
 
 def main_loop():
+	os.system("cd /home/pi/ProySed/webserver/ && python app.py &")
+	time.sleep(2)
 	config = ConfigParser.RawConfigParser()
 	config.read('camarasConfig.properties')
 	rutas = config.get('Camara', 'camara.rutas').split()
@@ -33,6 +37,7 @@ def main_loop():
 	raw_input("Press Enter to continue...")
 	for hilos in threads:
 		hilos.matar = True
+	os.system("pkill -9 python")
 
 if __name__ == '__main__':
     main_loop()
