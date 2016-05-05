@@ -247,13 +247,13 @@
       });
       
      $(".passwordchange").on("click",function(){
-        $.get(url+"/api?action=cambiarpassword&password="+$("#pass").val());
+        $.get("http://"+url+"/api?action=cambiarpassword&password="+$("#pass").val());
         $("#pass").val("");
      });
      
      $(".cambiarestado").on("click",function(){
        var data = $(this).data("state");
-       $.get(url +"/api?action=cambiarestado&estado="+data);
+       $.get("http://"+url +"/api?action=cambiarestado&estado="+data);
      });
     });
       
