@@ -236,7 +236,8 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/material.min.js"></script>
   <script>
-    var url = "http://192.168.42.1:8888";
+    //var url = "192.168.42.1:8888";
+    var url = "192.168.137.2:8888";
     $(function(){
        
       $(".navbott").on("click",function(){
@@ -255,13 +256,9 @@
        $.get(url +"/api?action=cambiarestado&estado="+data);
      });
     });
-    
-  </script>
-  
-    <script>
       
     var contador = 0;
-    var ws = new WebSocket('ws://192.168.42.1:8888/ws');
+    var ws = new WebSocket('ws://'+url+'/ws');
     var $message = $('#message');
 
     ws.onopen = function(ev){
