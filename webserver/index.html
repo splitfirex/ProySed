@@ -243,7 +243,6 @@
         var data = $(this).data("valor");
         $(".demo-content").hide();
         $("#"+data).show();
-     //   $(".mdl-layout__obfuscator").trigger("click");
       });
       
      $(".passwordchange").on("click",function(){
@@ -255,51 +254,8 @@
        var data = $(this).data("state");
        $.get(url +"/api?action=cambiarestado&estado="+data);
      });
-      //alert(data);
     });
     
-/*   window.setInterval(actualizarEstado, 1000);
-  
-    function actualizarEstado(){
-     
-    $.getJSON(url+"/consultar/estado", function( data ) {
-      $(".estado_alarma_text").text(data["estado"]);
-      $(".titleColor").removeClass('mdl-color--grey-500');
-      $(".titleColor").removeClass('mdl-color--blue-100');
-      $(".titleColor").removeClass('mdl-color--green-500');
-      $(".titleColor").removeClass('mdl-color--red-500');
-      
-      if(data["estado"] == "Activa"){
-        $(".titleColor").addClass('mdl-color--green-500');
-      }else if(data["estado"] == "Inactiva"){
-        $(".titleColor").addClass('mdl-color--grey-500');
-      }else if(data["estado"] == "Preactiva"){
-        $(".titleColor").addClass('mdl-color--blue-100');
-      }else if(data["estado"] == "Sonando"){
-        $(".titleColor").addClass('mdl-color--red-500');
-      }
-    });
-       
-    $.getJSON(url+ "/consultar/historico", function( data ) {
-      $("#contenido_movimientos").empty();
-      $("#contenido_movimientos2").empty();
-      $.each(data,function(key,value){
-        var elemento = $("#template_clonar").clone();
-        elemento.removeAttr('id');
-        elemento.show();
-        elemento.find(".sensor_nombre").first().text(value.nombre);
-        elemento.find(".sensor_info").first().text("Movimiento el "+ value.fecha)
-        //elemento.find(".article-image").first().attr("src", value.imagen);
-        if(key % 2 == 0){
-          $("#contenido_movimientos").append(elemento);
-        }else{
-         $("#contenido_movimientos2").append(elemento);
-        }
-        elemento.after('<div class="demo-separator mdl-cell--1-col"></div>');
-      });
-    }); 
-   }
-   */
   </script>
   
     <script>
